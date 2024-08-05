@@ -8,23 +8,23 @@ narrator: Deutsch Female
 
 comment:  Motivation, Begriffsdefinitionen und Einordnung der Veranstaltung
 
-import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_EAVD/master/config.md
+import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/config.md
 
 -->
 
-[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://github.com/TUBAF-IfI-LiaScript/VL_ProzeduraleProgrammierung/blob/master/00_Einfuehrung.md)
+[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/00_Termin/00_Vorlesung.md)
 
 
 # Einführung
 
-| Parameter                 | Kursinformationen                                                                                                                                            |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Veranstaltung:**        | @config.lecture                                                                                                                                              |
-| **Semester**              | @config.semester                                                                                                                                             |
-| **Hochschule:**           | `Nordakademie - Hochschule der Wirtschaft`                                                                                                                            |
-| **Inhalte:**              | ``                                                                                                                           |
-| **Link auf Repository: ** | [https://github.com/TUBAF-IfI-LiaScript/VL_EAVD/blob/master/00_Einfuehrung.md](https://github.com/TUBAF-IfI-LiaScript/VL_EAVD/blob/master/00_Einfuehrung.md) |
-| **Autoren**               | @author                                                                                                                                                      |
+| Parameter                 | Kursinformationen                                                                                                                                                              |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Veranstaltung:**        | @config.lecture                                                                                                                                                                |
+| **Semester**              | @config.semester                                                                                                                                                               |
+| **Hochschule:**           | `Nordakademie - Hochschule der Wirtschaft`                                                                                                                                     |
+| **Inhalte:**              | `Herausforderungen bei der Umsetzung von autonomen Robotern, Abgrenzung, Einordnung von ROS, Basiskonzepte`                                                                    |
+| **Link auf Repository: ** | [https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/00_Termin/00_Vorlesung.md](https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/00_Termin/00_Vorlesung.md) |
+| **Autoren**               | @author                                                                                                                                                                        |
 
 ![](https://media.giphy.com/media/26tn33aiTi1jkl6H6/source.gif)
 
