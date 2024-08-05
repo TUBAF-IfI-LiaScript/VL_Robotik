@@ -28,3 +28,7 @@ Dabei wird die Vorlesung in der Regel in den ersten 90 Minuten gehalten, gefolgt
 | 12.09. | Karten und Umgebungsrepräsentationen                  | ROS Navigation Stack               |                                               |
 | 19.09. | Kontrollarchitekturen, Verhaltensmodellierung         |                                    | Einparken, (Generalprobe)                     |
 | 26.09. | Methoden der Pfadplanung                              | _Vorträge der Teams_               | _Wettbewerb_                                  |
+
+## Schwerpunkt der Übung
+
+Im Rahmen der Übungen wird ein "Straßenverkehrsszenario" umgesetzt. Ein kleiner Roboter wird autonom mit Hindernissen und Lichtsignalanlagen interagieren während er einen Streckenverlauf durchfährt und einparkt.
