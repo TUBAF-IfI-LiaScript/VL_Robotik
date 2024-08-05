@@ -1,3 +1,19 @@
+<!--
+
+author:   Sebastian Zug & André Dietrich & Gero Licht
+email:    sebastian.zug@informatik.tu-freiberg.de & andre.dietrich@informatik.tu-freiberg.de & gero.licht@informatik.tu-freiberg.de
+version:  1.0.0
+language: de
+narrator: Deutsch Female
+
+comment:  Motivation, Begriffsdefinitionen und Einordnung der Veranstaltung
+
+import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/config.md
+
+-->
+
+[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/00_Intro/00_Praktikum.md)
+
 ## Einführungsbeispiele
 
 **Arbeit auf der Konsole**
