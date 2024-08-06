@@ -18,7 +18,7 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 
 **Arbeit auf der Konsole**
 
-Die Exploration und Untersuchung eines ROS2 Systems erfolgt mittels des Tools "ros2". Mit diesem können die folgenden Konzepte adressiert werden. Dazu bietet das Tool folgendende API:
+Die Exploration und Untersuchung eines ROS2 Systems erfolgt mittels des Tools "ros2". Mit diesem können die folgenden Konzepte adressiert werden. Dazu bietet das Tool folgende API:
 
 ```
 >ros2
@@ -55,7 +55,7 @@ Commands:
 ```
 
 
-### Hello-World Implementierung
+### Hello-World Implementierung C++
 
 Wir versuchen das "Hello World"-Beispiel der ROS Community nachzuvollziehen, dass
 zwei einfache Knoten - "minimal publisher" und "minimal subscriber" - definiert.
@@ -75,92 +75,74 @@ Publisher "topic"                                   Subscriber "topic"
 
 Eine entsprechende Kommentierung eines ähnlichen Codes findet sich auf der ROS2 [Webseite](https://index.ros.org/doc/ros2/Tutorials/Writing-A-Simple-Cpp-Publisher-And-Subscriber/).
 
-```cpp    Publisher.cpp
-#include <chrono>
-#include <memory>
+```python    Publisher.py
+import rclpy
+from rclpy.node import Node
 
-#include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
+from std_msgs.msg import String
 
-using namespace std::chrono_literals;
 
-class MinimalPublisher : public rclcpp::Node
-{
-  public:
-    MinimalPublisher()
-    : Node("minimal_publisher"), count_(0)
-    {
-      publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);
-      timer_ = this->create_wall_timer(500ms,
-                           std::bind(&MinimalPublisher::timer_callback, this));
-    }
+class MinimalPublisher(Node):
 
-  private:
-    void timer_callback()
-    {
-      auto message = std_msgs::msg::String();
-      message.data = "Hello, world! " + std::to_string(count_++);
-      RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
-      publisher_->publish(message);
-    }
-    rclcpp::TimerBase::SharedPtr timer_;
-    rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
-    size_t count_;
-};
+    def __init__(self):
+        super().__init__('minimal_publisher')
+        self.publisher_ = self.create_publisher(String, 'topic', 10)
+        timer_period = 0.5  # seconds
+        self.timer = self.create_timer(timer_period, self.timer_callback)
+        self.i = 0
 
-int main(int argc, char * argv[])
-{
-  rclcpp::init(argc, argv);
-  rclcpp::spin(std::make_shared<MinimalPublisher>());
-  rclcpp::shutdown();
-  return 0;
-}
+    def timer_callback(self):
+        msg = String()
+        msg.data = 'Hello World: %d' % self.i
+        self.publisher_.publish(msg)
+        self.get_logger().info('Publishing: "%s"' % msg.data)
+        self.i += 1
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    minimal_publisher = MinimalPublisher()
+    rclpy.spin(minimal_publisher)
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
 ```
 
-| Zeile | Bedeutung                                                                                                                                                                                                                                                                                                                                                                    |
-|:------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1-2   | Die `chrono`-Bibliothek ist eine Sammlung von flexiblen Typen, die das Benutzen von Zeiten, Zeiträumen und Zeitpunkten mit unterschiedlichen Präzisionsgraden ermöglicht ([Link](https://de.cppreference.com/w/cpp/chrono)). `memory` wird für die Verwendung von der Smart Pointer benötigt ([Link](https://en.cppreference.com/w/cpp/header/memory)).                      |
-| 4-5   | Integration der ROS2 spezifischen API-Definitionen für C++. Der Header `rclcpp.hpp` muss in jedem Fall eingebettet werden. Der avisierte Message Type `String` wird zudem inkludiert.                                                                                                                                                                                        |
-| 9     | Definition einer individuellen Knotenklasse, die von der API-Basisklasse `rclcpp::Node` erbt.                                                                                                                                                                                                                                                                                |
-| 12    | Der zugehörige Konstruktor der Klasse `MinimalPublisher()` ruft den Konstruktor der Basisklasse `Node` auf und initialisiert die Member `node_name` und eine eigene Variable `count_`. Diese dient als variabler Dateninhalt unserer Kommunikation.                                                                                                                          |
-| 14    | Wir erzeugen einen Publisher, der über die Memebervariable `publisher_` referenziert wird, der Nachrichten vom Typ `std_msgs::msg::String` versendet (Templateparameter), das entsprechende Topic lautet "topic" (Konstruktorparameter).                                                                                                                                     |
-| 15    | Ein Timer-Objekt wird erzeugt und initialisiert. Zum einen spezifizieren wir die Periodendauer und zum anderen eine aufzurufende Funktion. In diesem Fall ist das unsere private Methode `timer_callback()` die als impliziten Parameter `this` übergeben bekommt.                                                                                                           |
-| 20    | In der Funktion `callback()` wird die eigentliche Funktionalität des Publishers, das versenden einer Nachricht,  realisiert. Dazu wird zunächst ein entsprechender                                String befüllt und mittels des Makros  `RCLCPP_INFO` auf der Konsole ausgegeben. Anschließend wird die Methode `publish()` mit unserer Nachricht als Parameter aufgerufen. |
-| 32    | `init` aktiviert die abstrakte Middelwareschnittstelle von ROS2 für einen Knoten. Dabei können unterschiedliche Parameter für die Konfiguration (zum Beispiel Logging-Levels, Kommunikationsparameter, usw.) übergeben werden.                                                                                                                                               |
-| 33    | Aktivierung des Knotens über den einmaligen Aufruf von `spin()`. Diese Funktion sollte der Knoten nur im Fehlerfall verlassen.                                                                                                                                                                                                                                               |
 
-```cpp    Subscriber.cpp
-#include <memory>
+```python    Subscriber.py
+import rclpy
+from rclpy.node import Node
 
-#include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
-using std::placeholders::_1;
+from std_msgs.msg import String
 
-class MinimalSubscriber : public rclcpp::Node
-{
-  public:
-    MinimalSubscriber()
-    : Node("minimal_subscriber")
-    {
-      subscription_ = this->create_subscription<std_msgs::msg::String>(
-      "topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
-    }
 
-  private:
-    void topic_callback(const std_msgs::msg::String::SharedPtr msg) const
-    {
-      RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
-    }
-    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
-};
+class MinimalSubscriber(Node):
 
-int main(int argc, char * argv[])
-{
-  rclcpp::init(argc, argv);
-  rclcpp::spin(std::make_shared<MinimalSubscriber>());
-  rclcpp::shutdown();
-  return 0;
-}
+    def __init__(self):
+        super().__init__('minimal_subscriber')
+        self.subscription = self.create_subscription(
+            String,
+            'topic',
+            self.listener_callback,
+            10)
+        self.subscription  # prevent unused variable warning
+
+    def listener_callback(self, msg):
+        self.get_logger().info('I heard: "%s"' % msg.data)
+
+
+def main(args=None):
+    rclpy.init(args=args)
+    minimal_subscriber = MinimalSubscriber()
+
+    rclpy.spin(minimal_subscriber)
+    minimal_subscriber.destroy_node()
+    rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
 ```
 
 Ok, wie lassen sich diese beiden Knoten nun starten. In dieser Veranstaltung
@@ -169,8 +151,8 @@ starten wir diese jeweils mit
 
 ```
 #ros2 run <package_name> <node>
-ros2 run examples_rclcppp_minimal_subscriber subscriber_member_function
-ros2 run examples_rclcppp_minimal_publisher publisher_member_function
+ros2 run examples_rclpy_minimal_subscriber subscriber_member_function
+ros2 run examples_rclpy_minimal_publisher publisher_member_function
 ```
 
 Lassen Sie uns diese Konfiguration systematisch untersuchen:
@@ -194,7 +176,7 @@ average rate: 2.011
 
 2. Wie lassen sich mehrere Instanzen ein und des selben Knoten integrieren?
 
-Es soll nochmals darauf hingewiesen werden, `topic` ist ein willkürlich gewählter Name für unseren Kanal. Um beim Testen von verschiedenen Nodes eine schnelle Umbennenung zu ermöglichen können wir mittels Remapping die Topic und Nodenamen anpassen.
+Es soll nochmals darauf hingewiesen werden, `topic` ist ein willkürlich gewählter Name für unseren Kanal. Um beim Testen von verschiedenen Nodes eine schnelle Umbenennung zu ermöglichen können wir mittels Remapping die Topic und Nodenamen anpassen.
 
 ```
 > ros2 run examples_rclcpp_minimal_publisher publisher_member_function /topic:=/topic2
@@ -238,8 +220,8 @@ ros2 run turtlesim turtle_teleop_key
 ros2 run turtlesim turtlesim_node
 ```
 
-![RoboterSystem](./image/06_EinfuehrungROS/turtleSim.png)<!-- width="90%" -->
-*Screenshot des TurtleSim-Knotens*
+![RoboterSystem](./image/06_EinfuehrungROS/turtleSim.png "Screenshot des TurtleSim-Knotens")<!-- width="90%" -->
+
 
 Wir wollen wiederum das System inspizieren und nutzen dafür ein grafisches Inspektionssystem, das in ROS2 integriert ist. Hier werden die Methoden, die `ros2` auf der Kommandozeile bereithält in einer GUI abgebildet.
 
@@ -247,5 +229,28 @@ Wir wollen wiederum das System inspizieren und nutzen dafür ein grafisches Insp
 rqt
 ```
 
-![RoboterSystem](./image/06_EinfuehrungROS/TurtleSim_rqt.png)<!-- width="90%" -->
-*Screenshot des TurtleSim-Knotens*
+![RoboterSystem](./image/06_EinfuehrungROS/TurtleSim_rqt.png "Screenshot des TurtleSim-Knotens")<!-- width="90%" -->
+
+
+## Weiterführende Beispiele
+
+Nunmehr wollen wir eine Kamera mit ins Spiel bringen. Eine Möglichkeit, um auf die im Betriebssystem enthaltenen Kameratreiber zuzugreifen ist die Nutzung des `v4l2` Treibers. Sie finden die zugehörige Paketinformation unter [v4l2_camera](https://index.ros.org/r/v4l2_camera/).
+
+```bash
+ros2 run v4l2_camera v4l2_camera_node
+```
+
+```bash
+ros2 run v4l2_camera v4l2_camera_node
+```
+
+Wir können die Bilddaten entweder als reinen Bildstream betrachten (Datentyp spezifische Darstellung) oder "das große Besteck auspacken" und "rviz" nutzen
+
+```
+ros2 run rqt_image_view rqt_image_view
+```
+
+
+```bash
+rviz2
+```

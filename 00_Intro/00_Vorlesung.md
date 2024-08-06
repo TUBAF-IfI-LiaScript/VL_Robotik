@@ -65,20 +65,9 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 
 ### Bedeutung 
 
-<iframe
-  id="inlineFrameExample"
-  title="Inline Frame Example"
-  width="300"
-  height="200"
-  src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
-</iframe>
+??[IFrame](https://books.google.com/ngrams/graph?content=Autonomous+Vehicle%2CAutonomous+Robot&year_start=1900&year_end=2022&corpus=en&smoothing=3 "Ngram Analyse der Begriffe Autonomous Vehicle und Autonomous Robot")
 
-
- <iframe widht="1000" height="700" src="https://books.google.com/ngrams/graph?content=Autonomous+Vehicle%2CAutonomous+Robot&year_start=1900&year_end=2022&corpus=en&smoothing=3
- " title="ngram Autonomous Vehicle vs Robot"></iframe> 
-
-
-??[Test](https://books.google.com/ngrams/graph?content=artificial+intelligence%2Crobot%2CMachine+Learning%2C+deep+learning&year_start=1900&year_end=2022&corpus=en&smoothing=3)
+??[IFrame](https://books.google.com/ngrams/graph?content=artificial+intelligence%2Crobot%2CMachine+Learning%2C+deep+learning&year_start=1900&year_end=2022&corpus=en&smoothing=3 "Ngram Analyse der Begriffe Artificial Intelligence, Robot, Machine Learning und Deep Learning")
 
 ## Herausforderungen bei der Umsetzung 
 
@@ -380,10 +369,6 @@ sicherstellt.
 
 ## Basiskonzepte
 
-**Pakete** - Pakete kapseln einzelne Algorithmen und realisieren deren Abhängigkeiten. Letztendlich wird damit die Wiederverwendbarkeit einer Implementierung gewährleistet.
-
-https://fkromer.github.io/awesome-ros2/
-
 **Node** - Ein Knoten ist Teilnehmer im ROS-Graphen. ROS-Knoten verwenden eine ROS-Clientbibliothek, um mit anderen Knoten zu kommunizieren. Knoten können ein *Subject* veröffentlichen oder abonnieren. *Nodes* können auch einen Dienst bereitstellen oder verwenden. Einem Knoten sind konfigurierbare Parameter zugeordnet. Verbindungen zwischen Knoten werden durch einen verteilten Erkennungsprozess hergestellt. Knoten können sich im selben Prozess, in unterschiedlichen Prozessen oder auf unterschiedlichen Rechnern befinden.
 
 **Messages** - To enable the communication of data packets between the nodes, their structure and content format must be specified. Which data formats are used, where is the sending sensor located, which units of measurement represent the information? ROS defines abstract message types for this purpose.
@@ -399,35 +384,7 @@ https://fkromer.github.io/awesome-ros2/
 
 + Knoten stellen nur dann Verbindungen zu anderen Knoten her, wenn diese über kompatible Quality of Service-Einstellungen verfügen.
 
-**Topics** - Topics repräsentieren den Inhalt einer Nachricht und erlauben damit die Entkopplung von Informationsquelle und Informationssenke. Die Knoten brauchen nicht zu wissen, mit wem sie kommunizieren, allein das "Label" oder "Thema" genügt.  *Topics* sind für die unidirektionale, streamende Kommunikation gedacht. *Nodes*, die *Remote Procedure Calls* durchführen müssen, d.h. eine Antwort auf eine Anfrage erhalten, sollten stattdessen *Services* verwenden.
-
-<!--
-style="width: 80%; max-width: 860px; display: block; margin-left: auto; margin-right: auto;"
--->
-```ascii
-
-Publisher "scans"                Subscriber "scans"
-                                 Publisher "speed"
-
-+-------------------+
-|Laserscanner Front | -----.
-+-------------------+      |
-                           |     +---------------------+
-                           +---> | Obstacle Detection  |----->
-                           |     +---------------------+
-+-------------------+      |
-| Laserscanner Back | -----+
-+-------------------+      |     +---------------------+
-                           +---> | Leg Detection       |
-                                 |                     |----->
-                           +---> |                     |
-+-------------------+      |     +---------------------+
-| Laserscanner Left | -----+
-+-------------------+
-
-Publisher "FrontCloud"           Publisher "human"
-
-```
+**Topics** - Topics repräsentieren den Inhalt einer Nachricht und erlauben damit die Entkopplung von Informationsquelle und Informationssenke. Die Knoten brauchen nicht zu wissen, mit wem sie kommunizieren, allein das "Label" oder "Thema" genügt.
 
 **Messages** - Um die Kommunikation von Datenpaketen zwischen den Knoten zu ermöglichen, muss deren Aufbau und inhaltliches Format spezifiziert werden. Welche Datenformate werden verwendet, wo befindet sich der versendende Sensor, welche Maßeinheiten bilden die Informationen ab? ROS definiert dafür abstrakte Message-Typen.
 
@@ -510,6 +467,10 @@ Kommandozeile erzeugen. Damit besteht für Tests eigener Subscriber die Möglich
 ros2 topic pub /test s
 ```
 
+**Pakete** - Pakete kapseln einzelne Algorithmen und realisieren deren Abhängigkeiten. Letztendlich wird damit die Wiederverwendbarkeit einer Implementierung gewährleistet.
+
+https://fkromer.github.io/awesome-ros2/
+
 
 **Worin unterscheiden sich ROS1 und ROS2 in Bezug auf diese Konzepte?**
 
@@ -518,6 +479,108 @@ Einen Überblick bietet die Webseite unter folgendem [Link](http://design.ros2.o
 <!-- data-type="none" -->
 | Parameter           | ROS2 node                                                                                      | ROS1 node                                                                                      |
 |:--------------------|:-----------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------|
-| Zweck               | Ausführbares Programm im ROS1 Kontext, das in der Lage ist mit anderen Knoten zu kommunizieren | Ausführbares Programm im ROS1 Kontext, das in der Lage ist mit anderen Knoten zu kommunizieren |
+| Zweck               | Ausführbares Programm im ROS1 Kontext, das in der Lage ist mit anderen Knoten zu kommunizieren | Ausführbares Programm im ROS2 Kontext, das in der Lage ist mit anderen Knoten zu kommunizieren |
 | Discovery           | Verteilte Discovery-Mechanismen (die nicht von einem einzelnen Knoten abhängen)                | ROS Master als zentrale Verwaltungsinstanz der Kommunikation                                   |
 | Client Bibliotheken | `rclcpp` = C++ client Library, `rclpy` = Python client library C++                             | `roscpp` = C++ client Library, `rospy` = Python client library                                 |
+
+## Middleware?
+
+                         {{0-1}}
+********************************************************************************
+
+> Middleware im Kontext verteilter Anwendungen ist eine Software, die über die vom Betriebssystem bereitgestellten Dienste hinaus Dienste bereitstellt, um den verschiedenen Komponenten eines verteilten Systems die Kommunikation und Verwaltung von Daten zu ermöglichen.
+
+Middleware unterstützt und vereinfacht komplexe verteilte Anwendungen, sonst müsste die Anwendung Fragen wie:
+
++ Welche Informationen sind verfügbar?
++ In welchem Format liegen die Daten vor, bzw. wie muss ich meine Informationen verpacken?
++ Wer bietet die Informationen an?
++ Welche Laufzeit haben die Daten maximal?
+...
+
+Eine Middleware befreit die Applikation davon diese Frage zu beantworten. Vielmehr bieten Middleware-Dienste  einen Satz von Programmierschnittstellen, um einer Anwendung:
+
++ eine beliebige "Lokalisierung" im gesamten Netzwerk zu ermöglichen
++ eine standardisierte Interaktion mit einem anderen Dienst oder einer anderen Anwendung umzusetzen
++ Daten zu filtern (Inhalte, Autorisierung)
++ eine unabhängigen Netzzugriff unabhängig vom Netztyp sicherzustellen
++ einen zuverlässigen Datenaustausch sicherzustellen.
+
+> __Merke:__ DDS ist ein Beispiel einer Middleware.
+
+********************************************************************************
+
+                         {{1-2}}
+********************************************************************************
+
+__Und in ROS2?__
+
+Für die Realisierung dieser Aufgabe stehen unterschiedlichen Lösungsansätze mit
+verschiedenen Schwerpunktsetzungen bereit. Entsprechend integriert ROS2 ein
+abstraktes Interface für ein Einbettung von Middelware-Lösungen, die den DDS Standard implementieren.
+
+DDS stellt einen "Globalen Daten Raum" zur Verfügung, der diese allen interessierten
+verteilten Anwendungen zur Verfügung stellt.
+
+![RoboterSystem](./image/08_ROS_Kommunikation/Notional_OMG_DDS_Interoperability.jpg "Interoperatbilität als Ziel von standardisierten Middlewarekonzepten [^Stavros]")<!-- style="width: 60%; min-width: 420px; max-width: 800px;"-->
+
++ Datenobjekte werden mit einer Domain-ID, einem Topic und einen Schlüssel adressiert.
++ Die Nachfrager (Subscriber) sind von den Produzenten (Publisher) entkoppelt.
++ Filter ermöglichen die inhaltliche Definition von relevanten Informationen auf Subscriberseite.
++ Die Verbindung wird über _Contracts_ spezifiziert, die die _Quality_ _of_ _Service_ (QoS) definiert
++ Die Verbindung zwischen Subscribern und Publishern wird automatisch hergestellt.
+
+Der DDS Standard wurde durch verschiedene Unternehmen und Organisationen unter dem Dach der Object Management Group (OMG) vorangetrieben. Eine Beschreibung findet sich unter [Link](https://www.omg.org/spec/DDS/).
+
+********************************************************************************
+
+                         {{2-3}}
+********************************************************************************
+
+ROS2 hat als Default Lösung die Implementierung `rmw_fastrtps_cpp`, die von der Firma eProsima unter einer Apache 2.0 Lizenz verbreitet wird, integriert. Alternative Umsetzungen lassen sich anhand der unterstützten Hardware, des Overheads für den Nachrichtenaustausch bzw. anhand der Dauer für die Nachrichtenverbreitung abgrenzen. (vgl [A performance comparsion of OpenSplice and RTI implementations](https://www.researchgate.net/publication/271550363_Data_Distribution_Service_DDS_A_performance_comparison_of_OpenSplice_and_RTI_implementations)). Daher sieht ROS2 ein abstraktes Interface vor, dass ein Maximum an Austauschbarkeit gewährleisten soll.
+
+vgl. https://index.ros.org/doc/ros2/Concepts/DDS-and-ROS-middleware-implementations/
+
+<!--
+style="width: 80%; min-width: 520px; max-width: 820px;"
+-->
+```ascii
+
+              User Applications
++---------+---------+---------+
+| rclcpp  | rclpy   | rcljava | ...
++---------+---------+---------+-----------------------------+
+| rcl (C API) ROS client library interface                  |
+| Services, Parameters, Time, Names ...                     |
++-----------------------------------------------------------+
+| rmw (C API) ROS middleware interface                      |
+| Pub/Sub, Services, Discovery, ...                         |
++-----------+-----------+-------------+-----+---------------+
+| DDS       | DDS       | DDS         | ... | Intra-process |
+| Adapter 0 | Adapter 1 | Adapter 2   |     |      API      |
++-----------+-----------+-------------+     +---------------+
+| FastRTPS  | RTI       | PrismTech   | ...
+|           | Context   | OpenSplice  |
++-----------+-----------+-------------+                                        .
+```
+
+********************************************************************************
+
+                         {{3-4}}
+********************************************************************************
+
+Welche Aufgaben bildet DDS für ROS2 über entsprechende Schnittstellen ab?
+
+__Discovery__ ... DDS ist vollständig verteilt, auch auf der Ebene des Discovery Systems und steht damit im Unterschied zu ROS1, dass ein zentrales Koordinationselemente `roscore` einsetzte. Damit entfällt der zentralen Fehlerpunkt, der für die Kommunikation zwischen Teilen des Systems erforderlich ist.
+
+  1. Wenn ein Knoten gestartet wird, wirbt er für seine Anwesenheit bei anderen Knoten im Netzwerk mit derselben ROS-Domäne (gesetzt mit der Umgebungsvariablen `ROS_DOMAIN_ID`). Knoten reagieren auf diese Werbung mit Informationen über sich selbst, damit die entsprechenden Verbindungen hergestellt werden können und die Knoten kommunizieren können.
+
+  2. Knoten bewerben ihre Präsenz regelmäßig, so dass auch nach der ersten Erkundungsphase Verbindungen zu neu gefundenen Einheiten hergestellt werden können.
+
+  3. Knoten informieren die anderen Knoten, wenn sie offline gehen.
+
+__Publish/Subscribe__ ... DDS implmentiert das Publish/Subscribe Paradigma in Kombination mit Quality of Service Attributen. Diese dienen der Koordination des Datenaustausches unter Berücksichtigung von zwingenden Anforderungen des Subscribers bzw. dem Verhalten des Publishers.
+
+__Services and Actions__ ... DDS verfügt derzeit nicht über einen Request-Response-Mechanismus, mit dem die entsprechenden Konzept der Dienste in ROS umgesetzt werden könnten. Derzeit wird in der OMG DDS-Arbeitsgruppe eine RPC-Spezifikation zur Ratifizierung geprüft, und mehrere der DDS-Anbieter haben einen Entwurf für die Implementierung der RPC-API.
+
+********************************************************************************
