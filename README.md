@@ -31,4 +31,6 @@ Dabei wird die Vorlesung in der Regel in den ersten 90 Minuten gehalten, gefolgt
 
 ## Schwerpunkt der Übung
 
-Im Rahmen der Übungen wird ein "Straßenverkehrsszenario" umgesetzt. Ein kleiner Roboter wird autonom mit Hindernissen und Lichtsignalanlagen interagieren während er einen Streckenverlauf durchfährt und einparkt.
+Im Rahmen der Übungen wird ein "Straßenverkehrsszenario" umgesetzt. Ein kleiner Roboter wird autonom mit Hindernissen und Lichtsignalanlagen interagieren während er einen Streckenverlauf durchfährt und einparkt. Diese Aufgabe wird durch Gruppen von bis zu 3 Studierenden umgesetzt.
+
+https://github.com/user-attachments/assets/9ccb6e25-ef94-4707-b858-812347618593
