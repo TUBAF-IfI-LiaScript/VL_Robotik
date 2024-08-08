@@ -39,7 +39,6 @@ class FaceDetectorPub(Node):
  
         # Load the haar cascade classifier. 
         self.haar_path = '/home/sebastian/Desktop/Vorlesungen/Nordakademie/VL_Robotik/00_Intro/code/src/face_detector/resource/haarcascade_frontalface_default.xml' 
-        print(self.haar_path)
         self.face_cascade = cv2.CascadeClassifier(self.haar_path) 
          
     def timer_callback(self): 

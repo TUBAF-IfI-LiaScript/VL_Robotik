@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'face_detector_pub = face_detector.face_detector_publisher:main', 
+            'face_detector_solution = face_detector.face_detector_solution:main', 
         ],
     },
 )

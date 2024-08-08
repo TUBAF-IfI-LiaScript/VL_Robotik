@@ -55,7 +55,7 @@ Commands:
 ```
 
 
-### Hello-World Implementierung C++
+### Hello-World Implementierung
 
 Wir versuchen das "Hello World"-Beispiel der ROS Community nachzuvollziehen, dass
 zwei einfache Knoten - "minimal publisher" und "minimal subscriber" - definiert.
@@ -179,7 +179,7 @@ average rate: 2.011
 Es soll nochmals darauf hingewiesen werden, `topic` ist ein willkürlich gewählter Name für unseren Kanal. Um beim Testen von verschiedenen Nodes eine schnelle Umbenennung zu ermöglichen können wir mittels Remapping die Topic und Nodenamen anpassen.
 
 ```
-> ros2 run examples_rclcpp_minimal_publisher publisher_member_function /topic:=/topic2
+> ros2 run examples_rclpy_minimal_publisher publisher_member_function --ros-args --remap /topic:=/topic2
 ```
 
 ```
@@ -201,7 +201,29 @@ Natürlich können Sie auch den Topic-Namen aus der Kommandozeile anpassen. Dami
 ![RoboterSystem](./image/06_EinfuehrungROS/rosgraph2.png)<!-- width="60%" -->
 *Screenshot des Tools `rgt_graph`*
 
-4. Kann ich auch einen Publisher in der Konsole erzeugen?
+4. Wie kann ich die Nachrichten, die über den Kanal `topic` ausgetauscht werden, einsehen?
+
+Zunächst klären wir, um welchen Typ es sich handelt.
+
+```
+>ros2 topic list -t    
+/parameter_events [rcl_interfaces/msg/ParameterEvent]
+/rosout [rcl_interfaces/msg/Log]
+/topic [std_msgs/msg/String]
+```
+Nun können wir die Nachrichten einsehen.
+
+```
+>ros2 interface show std_msgs/msg/String
+# This was originally provided as an example message.
+# It is deprecated as of Foxy
+# It is recommended to create your own semantically meaningful message.
+# However if you would like to continue using this please use the equivalent in example_msgs.
+
+string data
+```
+
+5. Kann ich auch einen Publisher in der Konsole erzeugen?
 
 Natürlich, dies ist ein wichtiges Element des Debugging. Starten Sie also zum Beispiel den Subscriber mit den bereits bekannten Kommandos und führen Sie dann in einer anderen Konsole den nachfolgenden Befehl aus.
 
@@ -240,17 +262,16 @@ Nunmehr wollen wir eine Kamera mit ins Spiel bringen. Eine Möglichkeit, um auf 
 ros2 run v4l2_camera v4l2_camera_node
 ```
 
-```bash
-ros2 run v4l2_camera v4l2_camera_node
-```
-
 Wir können die Bilddaten entweder als reinen Bildstream betrachten (Datentyp spezifische Darstellung) oder "das große Besteck auspacken" und "rviz" nutzen
 
 ```
 ros2 run rqt_image_view rqt_image_view
 ```
 
+Nun wollen wir auch etwas sinnvolles damit anstellen. Lassen Sie uns eine einfache Gesichtserkennung implementieren. Wir nutzen dafür eine Beispielimplementierung aus dem Internet, die unter 
 
-```bash
-rviz2
-```
+https://community.element14.com/technologies/robotics/b/blog/posts/ros2_2d00_learning_2d00_series_2d00_blog7
+
+zu finden ist. Das Beispiel wollen wir aber gemeinsam umarbeiten ...
+
+> Welche Einschränkungen sehen Sie in der Implementierung? Wie könnte die Qualität des Codes verbessert werden?
