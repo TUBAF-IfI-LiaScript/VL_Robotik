@@ -2,7 +2,7 @@
 
 author:   Sebastian Zug & André Dietrich & Gero Licht
 email:    sebastian.zug@informatik.tu-freiberg.de & andre.dietrich@informatik.tu-freiberg.de & gero.licht@informatik.tu-freiberg.de
-version:  1.0.0
+version:  1.0.1
 language: de
 narrator: Deutsch Female
 
@@ -130,8 +130,8 @@ erfassung       | | |        v v v      Aktuator
             +----------+ +----------+
             | Sensoren | | Aktoren  |                               
             +----------+ +----------+
-                  |           |
-                  v           v      
+                  ^           |
+                  |           v      
             .-----------------------.
             | Umgebung              |
             .-----------------------.                                                                                .
@@ -373,7 +373,7 @@ sicherstellt.
 
 **Messages** - To enable the communication of data packets between the nodes, their structure and content format must be specified. Which data formats are used, where is the sending sensor located, which units of measurement represent the information? ROS defines abstract message types for this purpose.
 
-![RoboterSystem](./image/06_EinfuehrungROS/rosgraph.png)<!-- width="100%" -->
+![RoboterSystem](./images/rosgraph.png)<!-- width="100%" -->
 *Screenshot der Knoten eines umfangreicheren Projektes. Die Ellipsen repräsentieren die Knoten, die rechteckigen Boxen die "Datenkanäle" dazwischen.*
 
 **Discovery** - Die Erkennung von *Nodes* erfolgt automatisch über die zugrunde liegende Middleware von ROS2. Dafür sind folgende Punkte zu beachten
@@ -522,7 +522,7 @@ abstraktes Interface für ein Einbettung von Middelware-Lösungen, die den DDS S
 DDS stellt einen "Globalen Daten Raum" zur Verfügung, der diese allen interessierten
 verteilten Anwendungen zur Verfügung stellt.
 
-![RoboterSystem](./image/08_ROS_Kommunikation/Notional_OMG_DDS_Interoperability.jpg "Interoperatbilität als Ziel von standardisierten Middlewarekonzepten [^Stavros]")<!-- style="width: 60%; min-width: 420px; max-width: 800px;"-->
+![RoboterSystem](images/Notional_OMG_DDS_Interoperability.jpg "Interoperatbilität als Ziel von standardisierten Middlewarekonzepten [^Stavros]")<!-- style="width: 60%; min-width: 420px; max-width: 800px;"-->
 
 + Datenobjekte werden mit einer Domain-ID, einem Topic und einen Schlüssel adressiert.
 + Die Nachfrager (Subscriber) sind von den Produzenten (Publisher) entkoppelt.

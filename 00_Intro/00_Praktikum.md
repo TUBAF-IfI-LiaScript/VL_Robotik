@@ -2,7 +2,7 @@
 
 author:   Sebastian Zug & André Dietrich & Gero Licht
 email:    sebastian.zug@informatik.tu-freiberg.de & andre.dietrich@informatik.tu-freiberg.de & gero.licht@informatik.tu-freiberg.de
-version:  1.0.0
+version:  1.0.1
 language: de
 narrator: Deutsch Female
 
@@ -146,7 +146,7 @@ if __name__ == '__main__':
 ```
 
 Ok, wie lassen sich diese beiden Knoten nun starten. In dieser Veranstaltung
-wollen wir uns allein auf die vorinstallierten Beispiele, in diesem Fall die Pakete `examples_rclcppp_minimal_subscriber` und `examples_rclcppp_minimal_publisher` konzentrieren. Dazu
+wollen wir uns allein auf die vorinstallierten Beispiele, in diesem Fall die Pakete `examples_rclpy_minimal_subscriber` und `examples_rclpy_minimal_publisher` konzentrieren. Dazu
 starten wir diese jeweils mit
 
 ```
@@ -189,7 +189,7 @@ Publisher count: 1
 Subscriber count: 2
 ```
 
-![RoboterSystem](./image/06_EinfuehrungROS/rosgraph.png)<!-- width="80%" -->
+![RoboterSystem](./images/rosgraph.png)<!-- width="80%" -->
 *Screenshot des Tools `rgt_graph`*
 
 Natürlich können Sie auch den Topic-Namen aus der Kommandozeile anpassen. Damit entsteht ein neuer Kanal, der keine Subcriber hat.
@@ -198,7 +198,7 @@ Natürlich können Sie auch den Topic-Namen aus der Kommandozeile anpassen. Dami
 > ros2 run examples_rclcpp_minimal_publisher publisher_member_function --ros-args --remap /topic:=/topic2
 ```
 
-![RoboterSystem](./image/06_EinfuehrungROS/rosgraph2.png)<!-- width="60%" -->
+![RoboterSystem](./images/rosgraph2.png)<!-- width="60%" -->
 *Screenshot des Tools `rgt_graph`*
 
 4. Wie kann ich die Nachrichten, die über den Kanal `topic` ausgetauscht werden, einsehen?
