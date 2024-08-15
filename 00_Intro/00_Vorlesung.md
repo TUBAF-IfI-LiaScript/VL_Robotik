@@ -18,14 +18,14 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 # Einführung
 
 <!-- data-type="none" -->
-| Parameter                 | Kursinformationen                                                                                                                                                              |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Veranstaltung:**        | @config.lecture                                                                                                                                                                |
-| **Semester**              | @config.semester                                                                                                                                                               |
-| **Hochschule:**           | `Nordakademie - Hochschule der Wirtschaft`                                                                                                                                     |
-| **Inhalte:**              | `Herausforderungen bei der Umsetzung von autonomen Robotern, Abgrenzung, Einordnung von ROS, Basiskonzepte`                                                         |
-| **Link auf Repository:**  | [https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/00_Termin/00_Vorlesung.md](https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/00_Termin/00_Vorlesung.md) |
-| **Autoren**               | @author                                                                                                                                                                        |
+| Parameter                | Kursinformationen                                                                                           |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| **Veranstaltung:**       | @config.lecture                                                                                             |
+| **Semester**             | @config.semester                                                                                            |
+| **Hochschule:**          | `Nordakademie - Hochschule der Wirtschaft`                                                                  |
+| **Inhalte:**             | `Herausforderungen bei der Umsetzung von autonomen Robotern, Abgrenzung, Einordnung von ROS, Basiskonzepte` |
+| **Link auf Repository:** | [https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/00_Termin/00_Vorlesung.md                      |
+| **Autoren**              | @author                                                                                                     |
 
 ![](https://media.giphy.com/media/26tn33aiTi1jkl6H6/source.gif)
 
@@ -473,9 +473,6 @@ ros2 topic pub /test s
 ```
 
 **Pakete** - Pakete kapseln einzelne Algorithmen und realisieren deren Abhängigkeiten. Letztendlich wird damit die Wiederverwendbarkeit einer Implementierung gewährleistet.
-
-https://fkromer.github.io/awesome-ros2/
-
 
 ## Middleware?
 

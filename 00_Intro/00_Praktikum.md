@@ -6,9 +6,7 @@ version:  1.0.1
 language: de
 narrator: Deutsch Female
 
-comment:  Motivation, Begriffsdefinitionen und Einordnung der Veranstaltung
-
-import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/config.md
+comment:  Praktische Einführung in ROS Tools und Konzepte
 
 -->
 
