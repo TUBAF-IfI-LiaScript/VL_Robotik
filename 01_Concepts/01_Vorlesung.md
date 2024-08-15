@@ -33,12 +33,7 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 
 **Fragen an die heutige Veranstaltung ...**
 
-* Mit welcher Art von Roboter und Roboteranwendungen wollen wir uns im Rahmen der Vorlesung beschäftigen?
-* Welche Herausforderungen gibt es bei der Umsetzung von mobilen Robotersystemen?
-* Was ist der Unterschied zwischen ROS1 und ROS2?
-* Welche Basiskonzepte sind für die Arbeit mit ROS wichtig?
-* Warum sind Frameworks wie ROS für die Entwicklung von Robotern so wichtig?
-* Was bedeuten die Konzepte Node, Topic, Message und Package für die modulare Softwareentwicklung von Robotern?
+* 
 
 ---------------------------------------------------------------------
 
