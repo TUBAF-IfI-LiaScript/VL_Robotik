@@ -11,7 +11,7 @@ comment:  Aufbau von ROS Paketen und Integration in ein System
 import:   https://raw.githubusercontent.com/liascript-templates/plantUML/master/README.md
 -->
 
-[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/00_Intro/00_Praktikum.md)
+[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/00_Intro/01_Praktikum.md)
 
 
 ## ROS Pakete
