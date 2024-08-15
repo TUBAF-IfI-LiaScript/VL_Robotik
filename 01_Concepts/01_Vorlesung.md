@@ -33,7 +33,14 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 
 **Fragen an die heutige Veranstaltung ...**
 
-* 
+* Warum ist Middleware in verteilten Systemen notwendig?
+* Welche Aufgaben übernimmt DDS für ROS2?
+* Welche Rolle spielen die QoS Eigenschaften des Kommunikations-Layers?
+* Was sind die Vor- und Nachteile des Publish-Subscribe-Paradigmas?
+* Welche Vorteile bieten Services gegenüber Publish-Subscribe?
+* Wie können Parameter in ROS2 konfiguriert werden?
+* Was sind Actions und wie unterscheiden sie sich von Services?
+* Wie kann der Lebenszyklus eines Knotens in ROS2 gesteuert werden?
 
 ---------------------------------------------------------------------
 
@@ -82,17 +89,14 @@ ROS2 hat als Default Lösung die Implementierung `rmw_fastrtps_cpp`, die von der
 
 Welche Aufgaben bildet DDS für ROS2 über entsprechende Schnittstellen ab?
 
-__Discovery__ ... DDS ist vollständig verteilt, auch auf der Ebene des Discovery Systems und steht damit im Unterschied zu ROS1, dass ein zentrales Koordinationselemente `roscore` einsetzte. Damit entfällt der zentralen Fehlerpunkt, der für die Kommunikation zwischen Teilen des Systems erforderlich ist.
+> __Discovery, Publish/Subscribe, Services and Actions__ 
 
-  1. Wenn ein Knoten gestartet wird, wirbt er für seine Anwesenheit bei anderen Knoten im Netzwerk mit derselben ROS-Domäne (gesetzt mit der Umgebungsvariablen `ROS_DOMAIN_ID`). Knoten reagieren auf diese Werbung mit Informationen über sich selbst, damit die entsprechenden Verbindungen hergestellt werden können und die Knoten kommunizieren können.
+Das "turtlebot" Beispiel soll die verschiedenen Mechanismen der Kommunikation unter ROS verdeutlichen. Dabei wird unter anderem eine Publish-Subscribe Kommunikation zwischen einem Node für die Nutzereingaben und einer grafischen Ausgabe realisiert.
 
-  2. Knoten bewerben ihre Präsenz regelmäßig, so dass auch nach der ersten Erkundungsphase Verbindungen zu neu gefundenen Einheiten hergestellt werden können.
-
-  3. Knoten informieren die anderen Knoten, wenn sie offline gehen.
-
-__Publish/Subscribe__ ... DDS implmentiert das Publish/Subscribe Paradigma in Kombination mit Quality of Service Attributen. Diese dienen der Koordination des Datenaustausches unter Berücksichtigung von zwingenden Anforderungen des Subscribers bzw. dem Verhalten des Publishers.
-
-__Services and Actions__ ... DDS verfügt derzeit nicht über einen Request-Response-Mechanismus, mit dem die entsprechenden Konzept der Dienste in ROS umgesetzt werden könnten. Derzeit wird in der OMG DDS-Arbeitsgruppe eine RPC-Spezifikation zur Ratifizierung geprüft, und mehrere der DDS-Anbieter haben einen Entwurf für die Implementierung der RPC-API.
+```
+ros2 run turtlesim turtle_teleop_key
+ros2 run turtlesim turtlesim_node
+```
 
 ********************************************************************************
 
@@ -106,7 +110,7 @@ ROS 2 bietet eine Vielzahl von Quality of Service (QoS)-Richtlinien, mit denen S
 
 Eine Reihe von QoS "Richtlinien" kombinieren sich zu einem QoS "Profil". Angesichts der Komplexität der Auswahl der richtigen QoS-Richtlinien für ein bestimmtes Szenario bietet ROS 2 einen Satz vordefinierter QoS-Profile für gängige Anwendungsfälle (z.B. Sensordaten). Gleichzeitig erhalten die Benutzer die Flexibilität, spezifische Profile der QoS-Richtlinien zu steuern.
 
-QoS-Profile können für Publisher, Abonnenten, Service-Server und Clients angegeben werden. Damit wird die kombinierbarkeit der Komponenten unter Umständen eingeschränkt!
+QoS-Profile können für Publisher, Abonnenten, Service-Server und Clients angegeben werden. Damit wird die Kombinierbarkeit der Komponenten unter Umständen eingeschränkt!
 
 https://index.ros.org/doc/ros2/Concepts/About-Quality-of-Service-Settings/
 
@@ -188,7 +192,7 @@ In diesem Fall liegt eine Interaktion in Form eines Remote-Procedure-Calls (RPC)
 
 Dafür sind 2 Schritte notwendig:
 
-1. Ein Service wird über ein Service File definiert, dass analog zu den benutzerdefinierten Paketen die Struktur der auszutauschenden Daten beschreibt. Dabei wird sowohl die Struktur des Aufrufes, wie auch die Antwort des Services beschrieben. Dabei wird das gleiche Format wie bei den nutzerspezifischen Messages verwendet.
+1. Ein Service wird über ein Service File definiert, dass analog zu den benutzerdefinierten Paketen die Struktur der auszutauschenden Daten beschreibt. Dabei wird sowohl die Struktur des Aufrufs, wie auch die Antwort des Services beschrieben. Dabei wird das gleiche Format wie bei den nutzerspezifischen Messages verwendet.
 
 2. Die Logik des Service (Entgegennahme des Requests/ Ausliefern der Antwort) wird in einem Knoten implementiert. Hier werden die Parameter der Anfrage ausgewertet, die Antwort bestimmt und diese auf das Ausgabeformat abgebildet.
 
