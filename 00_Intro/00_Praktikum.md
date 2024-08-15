@@ -240,7 +240,7 @@ ros2 run turtlesim turtle_teleop_key
 ros2 run turtlesim turtlesim_node
 ```
 
-![RoboterSystem](./image/06_EinfuehrungROS/turtleSim.png "Screenshot des TurtleSim-Knotens")<!-- width="90%" -->
+![RoboterSystem](images/turtleSim.png "Screenshot des TurtleSim-Knotens")<!-- width="90%" -->
 
 
 Wir wollen wiederum das System inspizieren und nutzen dafür ein grafisches Inspektionssystem, das in ROS2 integriert ist. Hier werden die Methoden, die `ros2` auf der Kommandozeile bereithält in einer GUI abgebildet.
@@ -249,7 +249,7 @@ Wir wollen wiederum das System inspizieren und nutzen dafür ein grafisches Insp
 rqt
 ```
 
-![RoboterSystem](./image/06_EinfuehrungROS/TurtleSim_rqt.png "Screenshot des TurtleSim-Knotens")<!-- width="90%" -->
+![RoboterSystem](images/TurtleSim_rqt.png "Screenshot des TurtleSim-Knotens")<!-- width="90%" -->
 
 
 ## Weiterführende Beispiele
