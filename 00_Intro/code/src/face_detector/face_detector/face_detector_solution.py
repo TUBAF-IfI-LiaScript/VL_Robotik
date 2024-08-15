@@ -63,4 +63,3 @@ def main(args=None):
 
     face_detector_pubsub.destroy_node()
     rclpy.shutdown()
-    

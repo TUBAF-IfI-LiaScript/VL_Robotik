@@ -472,17 +472,6 @@ ros2 topic pub /test s
 https://fkromer.github.io/awesome-ros2/
 
 
-**Worin unterscheiden sich ROS1 und ROS2 in Bezug auf diese Konzepte?**
-
-Einen Überblick bietet die Webseite unter folgendem [Link](http://design.ros2.org/articles/interface_definition.html)
-
-<!-- data-type="none" -->
-| Parameter           | ROS2 node                                                                                      | ROS1 node                                                                                      |
-|:--------------------|:-----------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------|
-| Zweck               | Ausführbares Programm im ROS1 Kontext, das in der Lage ist mit anderen Knoten zu kommunizieren | Ausführbares Programm im ROS2 Kontext, das in der Lage ist mit anderen Knoten zu kommunizieren |
-| Discovery           | Verteilte Discovery-Mechanismen (die nicht von einem einzelnen Knoten abhängen)                | ROS Master als zentrale Verwaltungsinstanz der Kommunikation                                   |
-| Client Bibliotheken | `rclcpp` = C++ client Library, `rclpy` = Python client library C++                             | `roscpp` = C++ client Library, `rospy` = Python client library                                 |
-
 ## Middleware?
 
                          {{0-1}}

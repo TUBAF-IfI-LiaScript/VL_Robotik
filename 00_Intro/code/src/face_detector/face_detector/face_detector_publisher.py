@@ -38,7 +38,7 @@ class FaceDetectorPub(Node):
         self.br = CvBridge() 
  
         # Load the haar cascade classifier. 
-        self.haar_path = '/home/sebastian/Desktop/Vorlesungen/Nordakademie/VL_Robotik/00_Intro/code/src/face_detector/resource/haarcascade_frontalface_default.xml' 
+        self.haar_path = '/home/sebastian/Desktop/Vorlesungen/Nordakademie/VL_Robotik/00_Intro/code/src/face_detector/resource/haarcascade_frontalface_default.xml'        
         self.face_cascade = cv2.CascadeClassifier(self.haar_path) 
          
     def timer_callback(self): 
