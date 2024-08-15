@@ -2,32 +2,32 @@
 
 author:   Sebastian Zug & André Dietrich & Gero Licht
 email:    sebastian.zug@informatik.tu-freiberg.de & andre.dietrich@informatik.tu-freiberg.de & gero.licht@informatik.tu-freiberg.de
-version:  1.0.2
+version:  1.0.1
 language: de
 narrator: Deutsch Female
 
-comment:  Motivation, Begriffsdefinitionen und Einordnung der Veranstaltung
+comment:  Kommunikationsmechanismen in ROS2
 
 import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/config.md
 
 -->
 
-[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/00_Intro/00_Vorlesung.md)
+[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/01_Concepts/00_Vorlesung.md)
 
 
-# Einführung
+# Kommunikationskonzepte in ROS2
 
 <!-- data-type="none" -->
-| Parameter                 | Kursinformationen                                                                                                                                                              |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Veranstaltung:**        | @config.lecture                                                                                                                                                                |
-| **Semester**              | @config.semester                                                                                                                                                               |
-| **Hochschule:**           | `Nordakademie - Hochschule der Wirtschaft`                                                                                                                                     |
-| **Inhalte:**              | `Herausforderungen bei der Umsetzung von autonomen Robotern, Abgrenzung, Einordnung von ROS, Basiskonzepte`                                                         |
-| **Link auf Repository:**  | [https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/00_Termin/00_Vorlesung.md](https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/00_Termin/00_Vorlesung.md) |
-| **Autoren**               | @author                                                                                                                                                                        |
+| Parameter                | Kursinformationen                                                                                           |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| **Veranstaltung:**       | @config.lecture                                                                                             |
+| **Semester**             | @config.semester                                                                                            |
+| **Hochschule:**          | `Nordakademie - Hochschule der Wirtschaft`                                                                  |
+| **Inhalte:**             | `Herausforderungen bei der Umsetzung von autonomen Robotern, Abgrenzung, Einordnung von ROS, Basiskonzepte` |
+| **Link auf Repository:** | https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/01_Concepts/00_Vorlesung.md                     |
+| **Autoren**              | @author                                                                                                     |
 
-![](https://media.giphy.com/media/26tn33aiTi1jkl6H6/source.gif)
+![](https://media.giphy.com/media/4VY76i2rbyg2ggLIGQ/giphy-downsized.gif)
 
 ---------------------------------------------------------------------
 
@@ -38,446 +38,14 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 ---------------------------------------------------------------------
 
 
-## Einordnung und Abgrenzung 
-
-> A robot is a machine—especially one programmable by a computer—capable of carrying out a complex series of actions automatically. (Definition of `robot`. Oxford English Dictionary)
-
-![Mecanical Man](https://upload.wikimedia.org/wikipedia/commons/3/3c/L%27uomo_meccanico_1.png "Screenshot aus dem Film [Mechanical Man](https://en.wikipedia.org/wiki/The_Mechanical_Man) von 1921")
-
-### Unterscheidung 
-
-**Welche Robotersysteme kommen in Ihren Unternehmen vor?**
-
-<!-- data-type="none" -->
-| **Kriterium**                | **Optionen**                                                  |
-| ---------------------------- | ------------------------------------------------------------- |
-| **Art der Steuerung**        | <span style="color:blue">autonom</span>, teleoperiert, hybrid |
-| **Bewegungsfähigkeit**       | stationär, <span style="color:blue">mobil</span>              |
-| **Anwendungsbereich**        | Industrie, Verkehr, Medizin ...                               |
-| **Erscheinung**              | Humanoid, Nicht-humanoid                                      |
-| **Energieversorgung**        | Autark, Batterien, Kabelgebunden                              |
-| **Interaktionsfähigkeit**    | Kooperativ, Isoliert                                          |
-| **Komplexität der Umgebung** | Niedrig, Hoch                                                 |
-| **Sensorik und Wahrnehmung** | Einfach, <span style="color:red">Komplex</span>               |
-| **Größe**                    | Mikroroboter, Makroroboter                                    |
-| ...                          | ...                                                           |
-
-
-### Bedeutung 
-
-??[IFrame](https://books.google.com/ngrams/graph?content=Autonomous+Vehicle%2CAutonomous+Robot&year_start=1900&year_end=2022&corpus=en&smoothing=3 "Ngram Analyse der Begriffe Autonomous Vehicle und Autonomous Robot")
-
-??[IFrame](https://books.google.com/ngrams/graph?content=artificial+intelligence%2Crobot%2CMachine+Learning%2C+deep+learning&year_start=1900&year_end=2022&corpus=en&smoothing=3 "Ngram Analyse der Begriffe Artificial Intelligence, Robot, Machine Learning und Deep Learning")
-
-## Herausforderungen bei der Umsetzung 
-
-Welche technologischen Herausforderungen gilt es bei der Umsetzung von mobilen Robotersystemen zu meistern?
-
-+ **Technologische Herausforderungen**
-
-   - Robuste, hinreichend präzise Positionierung
-   - Umgebungskartierung (SLAM)
-   - Hindernisidentifikation und - umgehung
-   - Echtzeit-Umsetzung von Teilverhalten
-   - Energieeffizienz
-   - veränderliche Kommunikationsbedingungen
-   - ...
-
-+ **Wirtschaftliche Herausforderungen**
-
-   - Wirtschaftlichkeit
-   - Marktreife
-   - ...
-
-+ **Soziale und rechtliche Herausforderungen**
-
-    - Sicherheitsanforderungen
-    - Regulatorische Rahmenbedingungen
-    - Ethik und Datenschutz
-    - Arbeitsplatzverdrängung
-    - ...
-
-> Welche dieser Probleme sehen Sie als relevant bei den zwei Szenarien Lieferroboter und Aquatischer Roboter? 
-
-![Husky](images/Roboter_Engstelle2.png "Autonomer Roboter des Ready for Robots Projektes")
-![Husky](images/Schwimmroboter.png "TUBAF Schwimmroboter mit Windmessungsaufsatz")
-
-## Ebenen eines Robotersystems / Teilkomponenten 
-
-                   {{0-1}}
-*************************************************
-
-```ascii
-                    Statusmeldungen 
-     Nutzereingaben  ^                                       
-                 |   |
-Befehle          v   |
-            +-----------------------+
-            | Handlungsplanung      |  "$Strategie   $"
-            +-----------------------+
-                 |   ^     | | |        Folge von Aktionen     
-                 v   |     v v v
-            +-----------------------+
-            | Ausführung            |  "$Taktik$    "           
-            +-----------------------+
-                     ^      | | |       Geplante Trajektorie,
-Status               |      v v v       Verhalten
-            +-----------------------+
-            | Reaktive Überwachung  |  "$Ausführung$        "
-            +-----------------------+
-Sensordaten-    ^ ^ ^        | | |      Steuerbefehle an den 
-erfassung       | | |        v v v      Aktuator 
-            +----------+ +----------+
-            | Sensoren | | Aktoren  |                               
-            +----------+ +----------+
-                  ^           |
-                  |           v      
-            .-----------------------.
-            | Umgebung              |
-            .-----------------------.                                                                                .
-```
-
-![RoboterSystem](images/RoboterNuernberg.jpg "Roboter des RoboCupTeams aus Nürnberg - TDP des Teams AutonOhm, 2019")
-
-*************************************************
-
-                   {{1-2}}
-*************************************************
-
-```ascii
-                    Statusmeldungen 
-     Nutzereingaben  ^                                                           
-                 |   |                                                   Kommunikation, Nutzerschnittstellen
-Befehle          v   |                                                                     
-            +-----------------------+                                                                 
-            | Handlungsplanung      |  "$Strategie   $"                  Verhaltensmodell                        
-            +-----------------------+                                                                 
-                 |   ^     | | |        Folge von Aktionen                                                      
-                 v   |     v v v                                                                 
-            +-----------------------+                                                                 
-            | Ausführung            |  "$Taktik$    "                    Weltmodell, Handungsmuster Kontexterkennung
-            +-----------------------+                                                                 
-                     ^      | | |       Geplante Trajektorie,                                                        
-Status               |      v v v       Verhalten                                                                 
-            +-----------------------+                                                                 
-            | Reaktive Überwachung  |  "$Ausführung$        "            Regelung, Energiemanagement                  
-            +-----------------------+                                    Notaus-Erkennung                             
-Sensordaten-    ^ ^ ^        | | |      Steuerbefehle an den                                             
-erfassung       | | |        v v v      Aktuator                                                                  
-            +----------+ +----------+                                                                 
-            | Sensoren | | Aktoren  |                                    Hardwaretreiber                          
-            +----------+ +----------+                                                                 
-                  |           |                                                                 
-                  v           v                                                                       
-            .-----------------------.                                                                 
-            | Umgebung              |                                                                 
-            .-----------------------.                                                                                .
-```
-
-![RoboterSystem](images/RoboterNuernberg.jpg "Roboter des RoboCupTeams aus Nürnberg - TDP des Teams AutonOhm, 2019")
-
-> Wer soll das denn alles implementieren?
-
-*************************************************
-
-
-                                  {{2-3}}
-********************************************************************************
-
-![RoboterSystem](images/willow_p1_02s.640w.jpg)<!-- width="80%" -->
-Comic auf der Webseite der Firma Willow Garage, das die individuellen Frameworks
-für die Robotikentwicklung adressiert. [^2]
-
-[^2]: Willow Garage, http://www.willowgarage.com/blog/2010/04/27/reinventing-wheel, 2010
-
-********************************************************************************
-
-
-### Vergleich von Frameworks
-
-                                  {{0-1}}
-********************************************************************************
-
-1. Hardwareunterstützung und Laufzeitumgebung
-
-+ **Betriebssystem** Eine Robotikentwicklungsumgebung sollte mehrere Betriebssysteme und dabei eine möglichst umfangreiche Abdeckung für häufig genutzte Bibliotheken, Komponenten oder Hardwaretreiber bieten.
-
-+ **Unterstützung ressourcenbeschränkter Systeme** Die Interaktion und Kooperation mit ressourcenbeschränkten Systemen ist u.a. in Bereichen gefragt, in denen z.B. die Effizienz und Kosten der eingesetzten Komponenten eine tragende Rolle spielen. Für ein breites Anwendungsspektrum des jeweiligen Frameworks ist eine entsprechende Unterstützung solcher Systeme wünschenswert.
-
-+ **Echtzeitfähigkeit** Robotikanwendungen umfassen häufig Anwendungselemente, die harte Echtzeitanforderungen an die Verarbeitung stellen. Regelschleifen zur Ansteuerung von Manipulatoren benötigen, um stabil zu laufen, ein deterministisches Zeitverhalten.
-
-+ **Treiberintegration** Ein Framework sollte nicht nur eine die Vielfalt an Sensoren und Aktoren, sondern auch konkrete Robotersysteme spezifischer Hersteller, die auf diesen Komponenten aufsetzen, unterstützen.
-
-********************************************************************************
-
-                                  {{1-2}}
-********************************************************************************
-
-2. Kommunikation
-
-+ **Kommunikationsmiddleware** Damit Anwendungen verteilt über mehrere Rechnerknoten laufen können und somit eine Ortsunabhängigkeit gewährleisten, sind entsprechende Mechanismen erforderlich.
-
-+ **Kommunikationsparadigmen** Im Kontext einer Anwendung ist die Abdeckung unterschiedlicher Formen für den Nachrichtenaustausch zwischen den Komponenten wünschenswert. Als Interaktionsmuster sind die *Client-Server-Beziehung* und das *Publish-Subscribe-Modell* denkbar.
-
-+ **Echtzeitfähigkeit** Anknüpfend an die Echtzeitfähigkeit der Laufzeitumgebung ist das deterministische Verhalten der Kommunikationsverbindungen Voraussetzung für die Entwicklung zeitkritischer Systeme.
-
-********************************************************************************
-
-                                  {{2-3}}
-********************************************************************************
-
-3. Programmierung
-
-+ **Unterstützte Programmiersprachen**  Bei der Anwendungsentwicklung sollte dem Entwickler möglichst die Wahl gelassen werden, in welcher Programmiersprache entwickelt wird. Eine domain-spezifische Frage zielt dabei auf die Möglichkeit der grafischen Programmierung.
-
-+ **Unterstützungsbibliotheken** Vordefinierte Komponenten z.B. für Pfadplanung, Verhaltensauswahl und Lokalisierung erleichtern den Entwicklungsprozess und fördern die Wiederverwendung von Software-Modulen, wobei gegebenenfalls entsprechende Anpassungen erforderlich sind.
-
-+ **Erweiterbarkeit** Erweiterbarkeit bedeutet hier die Unterstützung für das Hinzufügen neuer Software-Module und neuer Hardware-Komponenten in das bestehende Rahmenwerk.
-
-+ **Lizenzmodell** Der Typ der Lizenz der Frameworks bestimmt insbesondere im Fall der kommerziellen Nutzung über deren generelle Anwendbarkeit. Durch das gewählte Lizenzmodell wird die Breite der Entwicklungs-Community zumindest mitbestimmt. Eine aktive Community erleichtert die Entwicklungsarbeit und bieten in Wikis oder Foren eine Vielzahl von Antworten, Anregungen und Beispielcode.
-
-********************************************************************************
-
-                                  {{3-4}}
-********************************************************************************
-
-4. Test und Debugging
-
-+ **Monitoring** Die Überwachung der einzelnen Komponenten und deren Beziehungen zueinander muss in einem übergreifenden Ansatz möglich sein, um komfortabel Aussagen über den Status des Robotersystemes. Eine grafische Schnittstelle, die die Visualisierung einzelner Komponenten, des Gesamtsystems oder einzelner Parameter übernimmt, vereinfacht die Entwicklung erheblich.
-
-+ **Logging** Das Logging der Anwendungsoperation unterstützt einerseits das Debugging und ermöglicht andererseits eine Wiederholung dieser Anwendungsausführung im Sinne eines Wiederabspielens einer Aufzeichnung. Somit wird eine Offline-Analyse der implementierten Funktionalitäten möglich, sodass auch Aussagen über die Performance dieser bzw. des Gesamtsystems getroffen werden können.
-
-+ **Simulation** Die Simulation der realen Welt ermöglicht es den Entwicklern, ihre Anwendungen zu testen, ohne die entsprechende Hardware besitzen zu müssen, indem diese geeignet modelliert wird. Die Simulatoren können dabei in Form von „einfachen“ zweidimensionalen bis hin zu komplexen 3-D-Umsetzungen mit realistischen physikalischen Gegebenheiten vorliegen.
-
-
-********************************************************************************
-
-## ROS, was ist das?
-
-Robot Operating System (ROS) ist ein Framework für die Entwicklung von Robotern. Dabei ist ROS kein Betriebssystem sondern eine Middleware mit aufgesetzter Paketstruktur. 2020 listeten die Statistiken mehrere tausend Repositories und Pakete. ROS wird unter der BSD-Lizenz veröffentlicht und ist somit der Open-Source-Szene zuzuordnen.
-
-Die Entwicklung begann 2007 am Stanford Artificial Intelligence Laboratory im Rahmen des Stanford-AI-Robot-Projektes (STAIR) und wurde ab 2009 hauptsächlich am Robotikinstitut Willow Garage weiterentwickelt. Seit April 2012 wird ROS von der neu gegründeten, gemeinnützigen Organisation Open Source Robotics Foundation (OSRF) unterstützt und seit Beendigung der operativen Tätigkeit von Willow Garage 2013 von dieser koordiniert, gepflegt und weiterentwickelt.
-
-Die Hauptbestandteile und -aufgaben von ROS sind:
-
-+ Hardwareabstraktion
-+ Gerätetreiber
-+ oft wiederverwendete Funktionalität
-+ Nachrichtenaustausch zwischen Programmen bzw. Programmteilen
-+ Paketverwaltung
-+ Programmbibliotheken zum Verwalten und Betreiben der Software auf mehreren Computern
-
-Die Webseite von ROS findet sich unter [ROS](https://www.ros.org/).
-
-Seit 2013 beschäftigt sich das ROS Industrial Consortium mit der Förderung und Unterstützung von ROS für Anwendungen in der Industrierobotik. In Europa koordiniert das Fraunhofer IPA (Stuttgart) die Aktivitäten des ROS Industrial Consortium Europe.
-
-Seit Beginn der Entwicklung von ROS 2.0 wird zwischen ROS 1 und ROS 2 unterschieden. Die beiden Hauptversionen sind nicht miteinander kompatibel, jedoch interoperabel und können parallel ausgeführt werden.
-
-Die aktuellen Versionen sind
-
-+ ROS1 - _Noetic Ninjemys_ (Noetische Ninjemys Oweni) veröffentlicht im Mai 2020 und
-+ ROS2 - _Humble Hawksbill_ (bescheidene Echte Karettschildkröte) Veröffentlichung im Mai 2021 (LTS Version).
-+ ROS2 - _Iron Irwini_ (eiserne Irwins Schildkröte) Veröffentlichung im Mai 2023.
-
->  In der Fachwelt für das autonome Fahren werden auch gerne zumindest Teile von ROS eingesetzt. In der Robotik nutzen mittlerweile nahezu alle Forschungsgruppen zumindest teilweise ROS. Viele Forschungsgruppen besitzen gar kein eigenes Softwareframework mehr, sondern konzentrieren sich voll auf ROS. *golem.de [Beitrag - Für wen ist ROS?](https://www.golem.de/news/robot-operating-system-was-bratwurst-bot-und-autonome-autos-gemeinsam-haben-1612-124079-4.html)*
-
-Das erste Paper, in dem die Basiskonzepte beschrieben wurden, ist unter [Link](http://www.robotics.stanford.edu/~ang/papers/icraoss09-ROS.pdf) zu finden.
-
-###  ROS 1 vs. ROS 2
-
-<!-- data-type="none" -->
-| Merkmal                     | ROS1                                                                                     | ROS2                                                                                                                                                                             |
-|:----------------------------|:-----------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Betriebssysteme             | Linux (Ubuntu, Gentoo, Debian), OS X                                                     | Linux  (Ubuntu), OS X, Windows 10                                                                                                                                                |
-| Programmiersprachen C       | C++03                                                                                    | C++11 (einzelne Konzepte von C++14)                                                                                                                                              |
-| Programmiersprachen Python  | Python 2                                                                                 | Python 3.5                                                                                                                                                                       |
-| Middleware                  | eigene Konzepte für den Datenaustausch                                                   | abstraktes Middlewarekonzept offen für spezifische Lösungen (aktuell DDS als Default-Implementierung), mit einem geeigneten Middleware-Ansatz sind Echtzeitanwendungen umsetzbar |
-| Build System                | [CMake](https://cmake.org/) Projekte mit [catkin](https://docs.ros.org/api/catkin/html/) | CMake Projekte (mit colcon), andere Systeme können integriert werden                                                                                                             |
-| Paketstruktur               | Integrierende Pakete möglich                                                             | aus Gründen der automatisierten Auflösung von Abhängigkeiten nur isolierte Pakete                                                                                                |
-| Message/Service Deklaration | Messageformatdefinitionen auf der Basis von Grundtypen,                                  | einheitliche Namen in Python und C++, default Werte, separate Namespaces für Services und Messages, einheitliche Zeittypen für die APIs                                          |
-| Systemkonfiguration         | XML Beschreibungen                                                                       | Python Code für den Systemstart mit komplexen Logiken                                                                                                                            |
-| Node vs. Nodelet            | unterschiedliche APIs für beide Konzepte                                                 | Implementierungen zielen auf eine Shared Library - es wird zur Laufzeit entschieden, ob diese als separater Prozess oder innerhalb eines Prozesses ausgeführt wird.              |
-
-Einen Überblick zu den genannten Features gibt die Webseite [Link](http://design.ros2.org/articles/changes.html)
-
-                                           {{1-2}}
-*******************************************************************************
-**Ersetzt ROS2 als ROS1 vollständig?**
-
-Blick zurück ...
-
-> *The quick answer is: Yes but with drawbacks. So ROS2 Crystal has worked with the new Gazebo with ROS2 support, so you have access to creating your own simulations using only ROS2. You have access to the main ROS packages like tf, navigation, image_transport, rqt, and the big RVIZ. So it would seem that 90% of the current ROS users would be satisfied. ...*
-
-> *But the reality is that a huge amount of packages don’t come out of the box working for ROS2 or are installed through debians.* [^Ref]
-
-[^Ref]: The Construct, "ROS2 vs ROS1? Or more like ROS2 + ROS1?" https://www.theconstructsim.com/ros2-vs-ros1/, 2018
-
-> Aktuell sollten neue Projekte immer auf ROS2 aufsetzen!
-
-Falls es Probleme bei der Umsetzung einzelner Pakete gibt, bietet das Paket `ros1_bridge` Hilfe, das die Kommunikation zwischen einem ROS1 und einen ROS2 Graphen
-sicherstellt.
-
-*******************************************************************************
-
-### Wie kann man sich in ROS einarbeiten?
-
-                                 {{0-4}}
-*******************************************************************************
-
-1. Das offizielle ROS-Tutorial-Website ist sehr umfangreich und in mehreren Sprachen verfügbar. Es enthält Details zur ROS-Installation, Dokumentation von ROS, etc. und ist völlig kostenlos.  Dabei lauern aber einige Fallstricke:
-
-   * Achten Sie immer, wenn Sie sich in ein Beispiel einlesen auf die zugehörige ROS-Versionsnummer!
-   * Prüfen Sie Abhängigkeiten und die Aktualität der Bibliotheken.
-   * Informieren Sie sich darüber in wie weit an dem Paket aktuell noch gearbeitet wird. Letzte Commits vor einigen Monaten sind immer ein schlechtes Zeichen :-)
-
-<!-- data-type="none" -->
-| ROS2                                                | ROS1                               | Hintergrund                  |
-|:----------------------------------------------------|:-----------------------------------|:-----------------------------|
-| https://index.ros.org/doc/ros2/                     | http://wiki.ros.org/               | Hauptseite des Projektes OSF |
-| https://discourse.ros.org/                          | https://answers.ros.org/questions/ | ROS Forum                    |
-| https://index.ros.org/doc/ros2/Tutorials/#tutorials | http://wiki.ros.org/ROS/Tutorials  | ROS Tutorials                |
-
-*******************************************************************************
-
-                                 {{1-4}}
-*******************************************************************************
-
-2. Es existiert eine Vielzahl von Tutorials in Form von Videos, die einen Überblick versprechen oder einzelne Themen individuell adressieren.
-
-<!-- data-type="none" -->
-| Titel                    | Inhalt                                                              | Link                                                                                        |
-|:-------------------------|:--------------------------------------------------------------------|:--------------------------------------------------------------------------------------------|
-| ROS tutorial #1          | Installation, erste Schritte                                        | [Link](https://www.youtube.com/watch?v=9U6GDonGFHw&t=72s)                                   |
-| Programming for Robotics | 5 Kurse als Einführung in ROS1 der ETH Zürich                       | [Link](https://www.youtube.com/watch?v=0BxVPCInS3M&list=PLE-BQwvVGf8HOvwXPgtDfWoxd4Cc6ghiP) |
-| ROS2 Tutorials           | Tutorial des kommerziell orientierten Kursanbieters "The Construct" | [Link](https://www.youtube.com/playlist?list=PLK0b4e05LnzYNBzqXNm9vFD9YXWp6honJ)            |
-
-*******************************************************************************
-
-                                 {{2-4}}
-*******************************************************************************
-
-3. Verschiedene Hochschulen und Institutionen bieten Kurse und Summer Schools an - diese sind teilweise kostenpflichtig!
-
-*******************************************************************************
-
-                                 {{3-4}}
-*******************************************************************************
-
-4. Zu empfehlen ist das Buch von Newmann "A Systematic Approach to Learning Robot Programming with ROS" oder aber von Kane "A Gentle Introduction to ROS". Letzteres ist online unter [Link](https://cse.sc.edu/~jokane/agitr/agitr-letter.pdf) zu finden. Beide beziehen sich aber auf ROS 1.
-
-*******************************************************************************
-
-## Basiskonzepte
-
-**Node** - Ein Knoten ist Teilnehmer im ROS-Graphen. ROS-Knoten verwenden eine ROS-Clientbibliothek, um mit anderen Knoten zu kommunizieren. Knoten können ein *Subject* veröffentlichen oder abonnieren. *Nodes* können auch einen Dienst bereitstellen oder verwenden. Einem Knoten sind konfigurierbare Parameter zugeordnet. Verbindungen zwischen Knoten werden durch einen verteilten Erkennungsprozess hergestellt. Knoten können sich im selben Prozess, in unterschiedlichen Prozessen oder auf unterschiedlichen Rechnern befinden.
-
-**Messages** - To enable the communication of data packets between the nodes, their structure and content format must be specified. Which data formats are used, where is the sending sensor located, which units of measurement represent the information? ROS defines abstract message types for this purpose.
-
-![RoboterSystem](./images/rosgraph.png)<!-- width="100%" -->
-*Screenshot der Knoten eines umfangreicheren Projektes. Die Ellipsen repräsentieren die Knoten, die rechteckigen Boxen die "Datenkanäle" dazwischen.*
-
-**Discovery** - Die Erkennung von *Nodes* erfolgt automatisch über die zugrunde liegende Middleware von ROS2. Dafür sind folgende Punkte zu beachten
-
-+ Wenn ein Knoten gestartet wird, kündigt er seine Anwesenheit anderen Knoten im Netzwerk mit derselben ROS-Domäne an (festgelegt mit der Umgebungsvariablen `ROS_DOMAIN_ID`). Knoten antworten auf diese Ankündigung mit Informationen über sich selbst, so dass die entsprechenden Verbindungen hergestellt werden können und die Knoten kommunizieren können.
-
-+  Knoten informieren regelmäßig über ihre Anwesenheit, damit Verbindungen zu neu erscheinenden Entitäten hergestellt werden können, die während des eigenen Starts noch nicht aktiv waren.
-
-+ Knoten stellen nur dann Verbindungen zu anderen Knoten her, wenn diese über kompatible Quality of Service-Einstellungen verfügen.
-
-**Topics** - Topics repräsentieren den Inhalt einer Nachricht und erlauben damit die Entkopplung von Informationsquelle und Informationssenke. Die Knoten brauchen nicht zu wissen, mit wem sie kommunizieren, allein das "Label" oder "Thema" genügt.
-
-**Messages** - Um die Kommunikation von Datenpaketen zwischen den Knoten zu ermöglichen, muss deren Aufbau und inhaltliches Format spezifiziert werden. Welche Datenformate werden verwendet, wo befindet sich der versendende Sensor, welche Maßeinheiten bilden die Informationen ab? ROS definiert dafür abstrakte Message-Typen.
-
-<!--
-style="width: 80%; max-width: 860px; display: block; margin-left: auto; margin-right: auto;"
--->
-```ascii
-
-Publisher "dist"                             Subscriber "dist"
-
-+------------+       .---------------.       +------------+
-| Node 1     | ----> | Message       | ----> | Node 2     |
-+------------+       |  Float32 data |       +------------+
-                     |  Int     type |
-                     .---------------.
- Distance sensor                             Speed control
-```
-
-Die ROS2 Message-Spezifikation integriert verschiedene Konfigurationsmöglichkeiten. Auf der obersten Ebene sind dies einfache Namens- und Typzuweisungen. Dabei wird zwischen sogenannten Built-in Typen und nutzerspezifischen Typen unterschieden. Feldnamen müssen klein geschriebene alphanumerische Zeichen mit Unterstrichen zur Trennung von Wörtern sein. Die Typdefinitionen der Basistypen erfolgen anhand "C++ naher" Bezeichner (`bool`, `char`, `float32` usw. )
-
-Komplexe Typen werden wie folgt spezifiziert
-
-<!-- data-type="none" -->
-| Index | ROS2 msg Type           | C++                |
-|:------|:------------------------|:-------------------|
-| 0     | zB. `float32`           | `float`            |
-| 1     | `string`                | `std::string`      |
-| 2     | static array            | `std::array<T, N>` |
-| 3     | unbounded dynamic array | `std::vector<T>`   |
-| 4     | bounded dynamic array   | custom_class<T,N>  |
-| 5     | bounded string          | `std::string`      |
-
-
-Im folgenden sollen Beispiele die
-
-```
-# Basic format: fieldtype1 fieldname1
-# Type 0, 1 examples:
-int32 my_int
-string my_string
-
-# Type 2
-int32[5] five_integers_array
-# Type 3
-int32[] unbounded_integer_array
-# Type 4
-int32[<=5] up_to_five_integers_array
-
-# Type 5
-string<=10 up_to_ten_characters_string
-string[<=5] up_to_five_unbounded_strings
-string<=10[] unbounded_array_of_string_up_to_ten_characters each
-string<=10[<=5] up_to_five_strings_up_to_ten_characters_each
-```
-
-Eine weitere Neuerung besteht in der Möglichkeit Default-Werte und Konstanten zu definieren.
-
-```
-# Field default values
-uint8 x 42
-int16 y -2000
-string full_name "John Doe"
-int32[] samples [-200, -100, 0, 100, 200]
-
-# Constant values with "="
-int32 X=123
-string FOO="foo"
-```
-
-Eigene Messagetypen umfassen üblicherweise eine Hierarchie von Messages und Sub-Messages. Untersuchen Sie zum Beispiel das Standard-Laserscanner Nachrichtenformat:
-
-```
-> ros2 msg show sensor_msgs/msg/LaserScan
-```
-
-Knoten, die einen Wert publizieren lassen sich neben den Programmen auch auf der
-Kommandozeile erzeugen. Damit besteht für Tests eigener Subscriber die Möglichkeit diese sehr einfach mit spezifischen Nachrichten zu triggern.
-
-```
-ros2 topic pub /test s
-```
-
-**Pakete** - Pakete kapseln einzelne Algorithmen und realisieren deren Abhängigkeiten. Letztendlich wird damit die Wiederverwendbarkeit einer Implementierung gewährleistet.
-
-https://fkromer.github.io/awesome-ros2/
-
-
-## Middleware?
+## ROS2 Kommunikationskonzepte 
 
                          {{0-1}}
 ********************************************************************************
 
-> Middleware im Kontext verteilter Anwendungen ist eine Software, die über die vom Betriebssystem bereitgestellten Dienste hinaus Dienste bereitstellt, um den verschiedenen Komponenten eines verteilten Systems die Kommunikation und Verwaltung von Daten zu ermöglichen.
+**Wiederholung:**
+
+>  Middleware im Kontext verteilter Anwendungen ist eine Software, die über die vom Betriebssystem bereitgestellten Dienste hinaus Dienste bereitstellt, um den verschiedenen Komponenten eines verteilten Systems die Kommunikation und Verwaltung von Daten zu ermöglichen.
 
 Middleware unterstützt und vereinfacht komplexe verteilte Anwendungen, sonst müsste die Anwendung Fragen wie:
 
@@ -486,49 +54,6 @@ Middleware unterstützt und vereinfacht komplexe verteilte Anwendungen, sonst m�
 + Wer bietet die Informationen an?
 + Welche Laufzeit haben die Daten maximal?
 ...
-
-Eine Middleware befreit die Applikation davon diese Frage zu beantworten. Vielmehr bieten Middleware-Dienste  einen Satz von Programmierschnittstellen, um einer Anwendung:
-
-+ eine beliebige "Lokalisierung" im gesamten Netzwerk zu ermöglichen
-+ eine standardisierte Interaktion mit einem anderen Dienst oder einer anderen Anwendung umzusetzen
-+ Daten zu filtern (Inhalte, Autorisierung)
-+ eine unabhängigen Netzzugriff unabhängig vom Netztyp sicherzustellen
-+ einen zuverlässigen Datenaustausch sicherzustellen.
-
-> __Merke:__ DDS ist ein Beispiel einer Middleware.
-
-********************************************************************************
-
-                         {{1-2}}
-********************************************************************************
-
-__Und in ROS2?__
-
-Für die Realisierung dieser Aufgabe stehen unterschiedlichen Lösungsansätze mit
-verschiedenen Schwerpunktsetzungen bereit. Entsprechend integriert ROS2 ein
-abstraktes Interface für ein Einbettung von Middelware-Lösungen, die den DDS Standard implementieren.
-
-DDS stellt einen "Globalen Daten Raum" zur Verfügung, der diese allen interessierten
-verteilten Anwendungen zur Verfügung stellt.
-
-![RoboterSystem](images/Notional_OMG_DDS_Interoperability.jpg "Interoperatbilität als Ziel von standardisierten Middlewarekonzepten [^Stavros]")<!-- style="width: 60%; min-width: 420px; max-width: 800px;"-->
-
-+ Datenobjekte werden mit einer Domain-ID, einem Topic und einen Schlüssel adressiert.
-+ Die Nachfrager (Subscriber) sind von den Produzenten (Publisher) entkoppelt.
-+ Filter ermöglichen die inhaltliche Definition von relevanten Informationen auf Subscriberseite.
-+ Die Verbindung wird über _Contracts_ spezifiziert, die die _Quality_ _of_ _Service_ (QoS) definiert
-+ Die Verbindung zwischen Subscribern und Publishern wird automatisch hergestellt.
-
-Der DDS Standard wurde durch verschiedene Unternehmen und Organisationen unter dem Dach der Object Management Group (OMG) vorangetrieben. Eine Beschreibung findet sich unter [Link](https://www.omg.org/spec/DDS/).
-
-********************************************************************************
-
-                         {{2-3}}
-********************************************************************************
-
-ROS2 hat als Default Lösung die Implementierung `rmw_fastrtps_cpp`, die von der Firma eProsima unter einer Apache 2.0 Lizenz verbreitet wird, integriert. Alternative Umsetzungen lassen sich anhand der unterstützten Hardware, des Overheads für den Nachrichtenaustausch bzw. anhand der Dauer für die Nachrichtenverbreitung abgrenzen. (vgl [A performance comparsion of OpenSplice and RTI implementations](https://www.researchgate.net/publication/271550363_Data_Distribution_Service_DDS_A_performance_comparison_of_OpenSplice_and_RTI_implementations)). Daher sieht ROS2 ein abstraktes Interface vor, dass ein Maximum an Austauschbarkeit gewährleisten soll.
-
-vgl. https://index.ros.org/doc/ros2/Concepts/DDS-and-ROS-middleware-implementations/
 
 <!--
 style="width: 80%; min-width: 520px; max-width: 820px;"
@@ -553,10 +78,7 @@ style="width: 80%; min-width: 520px; max-width: 820px;"
 +-----------+-----------+-------------+                                        .
 ```
 
-********************************************************************************
-
-                         {{3-4}}
-********************************************************************************
+ROS2 hat als Default Lösung die Implementierung `rmw_fastrtps_cpp`, die von der Firma eProsima unter einer Apache 2.0 Lizenz verbreitet wird, integriert. 
 
 Welche Aufgaben bildet DDS für ROS2 über entsprechende Schnittstellen ab?
 
@@ -573,3 +95,430 @@ __Publish/Subscribe__ ... DDS implmentiert das Publish/Subscribe Paradigma in Ko
 __Services and Actions__ ... DDS verfügt derzeit nicht über einen Request-Response-Mechanismus, mit dem die entsprechenden Konzept der Dienste in ROS umgesetzt werden könnten. Derzeit wird in der OMG DDS-Arbeitsgruppe eine RPC-Spezifikation zur Ratifizierung geprüft, und mehrere der DDS-Anbieter haben einen Entwurf für die Implementierung der RPC-API.
 
 ********************************************************************************
+
+                         {{1-2}}
+********************************************************************************
+
+
+__Welche Rolle spielen die QoS Eigenschaften des Kommunkations-Layers?__
+
+ROS 2 bietet eine Vielzahl von Quality of Service (QoS)-Richtlinien, mit denen Sie die Kommunikation zwischen Knoten und die Datenhaltung optimieren können. Im Gegensatz zu ROS1, das vorrangig auf TCP setzte, kann ROS2 von Transparenz der jeweiligen DDS-Implementierungen profitieren.
+
+Eine Reihe von QoS "Richtlinien" kombinieren sich zu einem QoS "Profil". Angesichts der Komplexität der Auswahl der richtigen QoS-Richtlinien für ein bestimmtes Szenario bietet ROS 2 einen Satz vordefinierter QoS-Profile für gängige Anwendungsfälle (z.B. Sensordaten). Gleichzeitig erhalten die Benutzer die Flexibilität, spezifische Profile der QoS-Richtlinien zu steuern.
+
+QoS-Profile können für Publisher, Abonnenten, Service-Server und Clients angegeben werden. Damit wird die kombinierbarkeit der Komponenten unter Umständen eingeschränkt!
+
+https://index.ros.org/doc/ros2/Concepts/About-Quality-of-Service-Settings/
+
+https://index.ros.org/doc/ros2/Tutorials/Quality-of-Service/
+
+
++ *Durability* ... legt fest, ob und wie lange Daten, die bereits ausgetauscht worden sind,  "am Leben bleiben". `volatile` bedeutet, dass dahingehend kein Aufwand investiert wird, `transient` oder `persistent` gehen darüber hinaus.
++ *Reliability* ...  Die Reliability-QoS definiert, ob alle geschriebenen Datensätze (irgendwann) bei allen Readern angekommen sein müssen. Bei zuverlässiger (`reliable`) Kommunikation werden geschriebene Datensätze eines Topics, die aus irgendwelchen Gründen auf dem Netzwerk verloren gehen, von der Middleware wiederhergestellt, um diese Daten verlässlich den Readern zustellen zu können. Im Unterschied dazu definiert `best effort` eine schnellstmögliche Zustellung.
++ *History* ... definiert, wie viele der letzten zu sendenden Daten und empfangenen Daten gespeichert werden. `Keep last` speichert n Samples, wobei die n durch den QoS Parameter _Depth_ definiert wird. `Keep all` speichert alle Samples
++ *Depth* ... erfasst die Größe der Queue für die History fest, wenn `Keep last` gewählt wurde.
+
+Die _quality of service profiles_ (QOS) fassen diese Parameter zusammen:
+
+| Konfiguration          | Durability | Reliability | History   | Depth  |
+| ---------------------- | ---------- | ----------- | --------- | ------ |
+| Publisher & Subscriber | volatile   | reliable    | keep last | -      |
+| Services               | volatile   | reliable    | keep last |        |
+| Sensor data            | volatile   | best effort | keep last | small  |
+| Parameters             | volatile   | reliable    | keep last | larger |
+| Default                | volatile   | reliable    | keep last | small  |
+
+Quelle: https://github.com/ros2/rmw/blob/release-latest/rmw/include/rmw/qos_profiles.h
+
+Die QoS Parameter werden gegeneinander abgewogen und ggf. abgestimmt.
+
+| Publisher   | Subscriber  | Verbindung | Result      |
+| ----------- | ----------- | ---------- | ----------- |
+| best effort | best effort | ja         | best effort |
+| best effort | reliable    | nein       |             |
+| reliable    | best effort | ja         | best effort |
+| reliable    | reliable    | ja         | reliable    |
+
+Evaluieren Sie die QoS Mechanismen, in dem Sie die Qualität Ihrer Netzverbindung
+manipulieren. Eine Anleitung findet sich zum Beispiel unter [Link](https://index.ros.org/doc/ros2/Tutorials/Quality-of-Service/)
+
+Eine Inspektion der Konfiguration der QoS Parameter ist mit 
+
+```
+ros2 run turtlesim turtle_teleop_key
+ros2 topic info /turtle1/cmd_vel --verbose
+```
+
+möglich.
+
+********************************************************************************
+
+## ROS Publish-Subscribe
+
+> Das Publish/Subscribe-Paradigma, wurde bereits in der vorangegangenen Veranstaltung eingeführt und soll hier der Vollständigkeit halber noch mal genannt sein.
+
+Das Konzept, dass der Publisher überhaupt kein Wissen darüber hat, wer der/die Subscriber sind generiert folgende Vorteile:
+
++ Es entkoppelt Subsysteme, die damit unabhängig von einander werden. Damit steigt die Skalierbarkeit des Systems und gleichzeitig die Handhabbarkeit.
++ Die Abarbeitung erfolgt asynchron und ohne Kontrollflussübergabe.
++ Der Publisher muss zum Veröffentlichen keine "komplexe Zielinformationen" angeben.
++ Publisher und Subscriber können die Arbeit jederzeit einstellen.
++ Publisher und Subscriber können eine spezifische Nachrichtenstruktur verwenden.
+
+Auf der anderen Seite ergeben sich genau daraus auch die zentralen Nachteile:
+
++ Die Zustellung einer Nachricht kann unter Umständen nicht garantiert werden.
++ Der Ausfall einer Komponente wird nicht zwangsläufig erkannt.
++ Das Pub/Sub-Pattern skaliert gut für kleine Netzwerke mit einer geringen Anzahl von Publisher- und Subscriber-Knoten und geringem Nachrichtenvolumen. Mit zunehmender Anzahl von Knoten und Nachrichten steigt jedoch die Wahrscheinlichkeit von Instabilitäten,
+
+> ROS implementiert eine themenbasierte Registrierung (topic based), andere Pub/Sub Systeme eine parameterbasierte (content based).
+
+![RoboterSystem](images/TurtlesSimMitKey.png)<!-- style="width: 80%; min-width: 420px; max-width: 800px;"-->
+
+
+## ROS Services
+
+Bisher haben wir über asynchrone Kommunikationsmechanismen gesprochen. Ein Publisher triggert ggf. mehrere Subscriber. Die damit einhergehende Flexibilität kann aber nicht alle Anwendungsfälle abdecken:
+
++ Berechne einen neuen Pfad
++ Aktiviere die Kamera
++ ...
+
+In diesem Fall liegt eine Interaktion in Form eines Remote-Procedure-Calls (RPC) vor. Die Anfrage / Antwort erfolgt über einen Dienst, der durch ein Nachrichtenpaar definiert ist, eine für die Anfrage und eine für die Antwort. Ein bereitstellender ROS-Knoten bietet einen Dienst unter einem String-Namen an, und ein Client ruft den Dienst auf, indem er die Anforderungsnachricht sendet und in seiner Ausführung innehält und auf die Antwort wartet. Die Client-Bibliotheken stellen diese Interaktion dem Programmierer so dar, als wäre es ein [Remote Procedure Call](https://de.wikipedia.org/wiki/Remote_Procedure_Call).
+
+Dafür sind 2 Schritte notwendig:
+
+1. Ein Service wird über ein Service File definiert, dass analog zu den benutzerdefinierten Paketen die Struktur der auszutauschenden Daten beschreibt. Dabei wird sowohl die Struktur des Aufrufes, wie auch die Antwort des Services beschrieben. Dabei wird das gleiche Format wie bei den nutzerspezifischen Messages verwendet.
+
+2. Die Logik des Service (Entgegennahme des Requests/ Ausliefern der Antwort) wird in einem Knoten implementiert. Hier werden die Parameter der Anfrage ausgewertet, die Antwort bestimmt und diese auf das Ausgabeformat abgebildet.
+
+Diese Vorgänge sollen nun in zwei Beispielen besprochen werden. Einmal anhand
+des Turtlesim-Beispiels und anhand einer eigenen Implementierung.
+
+### Manuelle Interaktion mit ROS-Services
+
+```
+ros2 run turtlesim turtlesim_node
+```
+
+
+![RoboterSystem](images/SingleTurtle.png)<!-- style="width: 80%; min-width: 420px; max-width: 800px;"-->
+
+
+Wie explorieren Sie die Services, die durch den `turtlesim_node` bereitgestellt werden?
+
+`ros2` stellt zwei Schnittstellen für die Arbeit mit den Services bereit.
+
++ `service` erlaubt den Zugriff auf die tatsächlich angebotenen Services während
++ `interfaces`  die Definitionsformate offeriert
+
+```bash
+> ros2 service list
+/clear
+/kill
+/reset
+/spawn
+/turtle1/set_pen
+/turtle1/teleport_absolute
+/turtle1/teleport_relative
+/turtlesim/describe_parameters
+/turtlesim/get_parameter_types
+/turtlesim/get_parameters
+/turtlesim/list_parameters
+/turtlesim/set_parameters
+/turtlesim/set_parameters_atomically
+>
+> ros2 interface list | grep turtlesim
+turtlesim/srv/Kill
+turtlesim/srv/SetPen
+turtlesim/srv/Spawn
+turtlesim/srv/TeleportAbsolute
+turtlesim/srv/TeleportRelative
+```
+
+Offenbar stellt die Turtlesim-Umgebung 5 Services bereit, deren Bedeutung selbsterklärend ist. Die zugehörigen Definitionen sind namensgleich zugeordnet. Auf die zusätzlich aufgezeigten Parameter wird im nächstfolgenden Abschnitt eingegangen.
+
+Das Format lässt sich entsprechend aus den srv Dateien ablesen:
+
+```
+> ros2 interface show turtlesim/srv/Spawn
+float32 x
+float32 y
+float32 theta
+string name # Optional. A unique name will be created and returned if this is empty
+---
+string name
+```
+
+Versuchen wir also eine Service mittels `ros2 service call` manuell zu starten. Der Aufruf setzt sich aus mehreren Elementen zusammen, deren Konfiguration zwischen den ROS2 Versionen schwanken. An erster Stelle steht der Dienstname gefolgt von der Service-Definition und dem eigentlichen Parametersatz.
+
+```
+> ros2 service call /spawn turtlesim/srv/Spawn "{x: 2, y: 2, theta: 0.2, name: ''}"
+
+waiting for service to become available...
+requester: making request: turtlesim.srv.Spawn_Request(x=2.0, y=2.0, theta=0.2, name='')
+
+response:
+turtlesim.srv.Spawn_Response(name='turtle2')
+```
+
+Offenbar wird eine neue Schildkröte in der Simulation erzeugt und mit einem generierten Namen versehen. In diesem Fall erfolgt als Reaktion auf den Request nicht nur eine allgemeine Antwort, vielmehr wird ein weiterer Knoten erzeugt der weitere Publisher und Subscriber öffnet.
+
+![RoboterSystem](images/MultipleTurtles.png)<!-- style="width: 80%; min-width: 420px; max-width: 800px;"-->
+
+Mit den anderen Services (`Kill`) kann dessen Verhalten nun adaptiert werden.
+
+### Anwendung in Parameter Konfiguration
+
+Eine besondere Variante der Services stellen die Parameter dar. Dies sind knoteninterne Größen, die über Services angepasst werden können. Darunter fallen zum Beispiel die Konfigurationsdaten
+
++ einer Kamera,
++ die gewünschte maximale Reichweite eines Ultraschallsensors,
++ die Schwellwerte bei der Featureextraktion, Linienerkennung, etc.
++ ...
+
+Der Vorteil der Parameter liegt darin, dass diese ohne Neukompilierung angepasst werden können.
+
+Zur Illustration des Mechanismus soll wiederum auf die Turtelsim-Umgebung zurückgegriffen werden.
+
+```
+> ros2 param list
+/turtlesim:
+  background_b
+  background_g
+  background_r
+  use_sim_time
+> ros2 param describe /turtlesim background_b
+  Parameter name: background_b
+    Type: integer
+    Description: Blue channel of the background color
+    Constraints:
+      Min value: 0
+      Max value: 255
+> ros2 param get /turtlesim background_b
+  Integer value is: 86
+> ros2 param set /turtlesim background_b 10
+  Set parameter successful
+```
+
+Der Hintergrund der Simulationsumgebung ändert sich entsprechend.
+
+Der Vorteil des Parameterkonzepts liegt nun darin, dass wir:
+
++ das Set der Parameter während der Laufzeit anpassen können. Damit kann das Testen der Anwendung im Feld (zum Beispiel bei der Konfiguration von Sensoren) ohne Neustart/Neukompilierung realisiert werden.
++ die gewählten Sets einzeln oder im Block abspeichern können. Diese Konfigurationsfiles werden als yaml Dateien abgelegt und können für unterschiedliche Einsatzszenarien aufgerufen werden.
+
+```
+> ros2 param dump /turtlesim
+  Saving to:  ./turtlesim.yaml
+> cat turtlesim.yaml
+  turtlesim:
+    ros__parameters:
+      background_b: 255
+      background_g: 86
+      background_r: 69
+      use_sim_time: false
+```
+
+Der Aufruf kann dann entweder in der Kommandozeile erfolgen
+
+```
+ros2 run turtlesim turtlesim_node --ros-args --params-file turtlesim.yaml
+```
+
+oder aber im Launch file
+
+```python   LaunchExample
+ld = LaunchDescription([
+        launch_ros.actions.Node(
+            package='nmea_navsat_driver', node_executable='nmea_serial_driver_node', output='screen',
+            parameters=["config.yaml"])
+    ])
+```
+
+Die Implementierung erfolgt anhand eines knoten-internen Parameterservers der wie folgt initialisiert wird:
+
+```python        ParameterImplementation.py
+import rclpy
+import rclpy.node
+
+class MinimalParam(rclpy.node.Node):
+    def __init__(self):
+        super().__init__('minimal_param_node')
+
+        #                       Parameter      Default
+        #                       name
+        self.declare_parameter('my_parameter', 'world')
+
+        self.timer = self.create_timer(1, self.timer_callback)
+
+    def timer_callback(self):
+        my_param = self.get_parameter('my_parameter').get_parameter_value().string_value
+
+        self.get_logger().info('Hello %s!' % my_param)
+
+        my_new_param = rclpy.parameter.Parameter(
+            'my_parameter',
+            rclpy.Parameter.Type.STRING,
+            'world'
+        )
+        all_new_parameters = [my_new_param]
+        self.set_parameters(all_new_parameters)
+
+def main():
+    rclpy.init()
+    node = MinimalParam()
+    rclpy.spin(node)
+
+if __name__ == '__main__':
+    main()
+```
+
+## ROS Actions
+
+_Actions_ sind für lang laufende Aufgaben vorgesehen. Der Client wartet dabei nicht auf das Eintreten des Resultats sondern setzt seine Arbeit fort. Entsprechend wird eine _Action_ als asynchroner Call bezeichnet, der sich an einen _Action_ _Server_ richtet.
+
+Das _Action_ Konzept von ROS spezifiziert 3 Nachrichtentypen, die der Client an den Server richten kann:
+
+| Nachricht | Richtung    | Bedeutung                                                                                                                                                                                                                                                                                                                |
+| --------- | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Goal      | Client -> Server    | ... definiert die Parameter des Ziels einer Operation. Im Falle einer Bewegung der Basis wäre das Ziel eine _PoseStamped_-Nachricht, die Informationen darüber enthält, wohin sich der Roboter in der Welt bewegen soll. Darüber hinaus werden Randbedingungen definiert, wie zum Beispiel die maximale Geschwindigkeit. |
+| Feedback  | Server -> Client    | ... ermöglicht es eine Information zum aktuellen Stand der Abarbeitung zu erhalten. Für das Bewegen der Basis kann dies die aktuelle Pose des Roboters entlang des Weges sein.                                                                                                                                           |
+| Result    |Server -> Client       | ... wird vom ActionServer an den ActionClient gesendet, wenn das Ziel erreicht ist. Dies ist anders als Feedback, da es genau einmal gesendet wird.                                                                                                                                                                      |
+
+```text @plantUML.png
+@startuml
+
+Action_client -> Action_server: goal request
+activate Action_client
+activate Action_server
+
+Action_server -> User_method: activate algorithm
+activate User_method
+Action_server --> Action_client: goal response
+
+Action_client -> Action_server: result request
+
+User_method -> Action_client: publish feedback
+User_method -> Action_client: publish feedback
+User_method -> Action_client: publish feedback
+
+User_method -> Action_server: set result
+deactivate User_method
+
+Action_server --> Action_client: result response
+deactivate Action_server
+deactivate Action_client
+@enduml
+```
+
+Beschrieben wird das Interface wiederum mit einem eigenen Filetyp, den sogenannten `.action` Files. Im Beispiel sehe Sie eine _Action_, die sich auf die Bewegung eines Outdoorroboters zu einer angegebenen GPS-Koordinate bezieht.
+
+```
+# Define the goal
+float64 latitude
+float64 longitude
+---
+# Define the result
+uint32 travel_duration # s
+uint32 distance_traveled # m
+---
+# Define a feedback message
+uint32 remaining_distance # m
+```
+
+Hinzu kommt noch die Möglichkeit eine _Action_ mit _chancel_ zu stoppen. Hierfür ist aber keine explizite Schnittstelle notwendig.
+
+#### Beispiel
+
+Das Beispiel wurde der ROS2 Dokumentation unter [Link](https://index.ros.org/doc/ros2/Tutorials/Understanding-ROS2-Actions/) entnommen.
+
+```
+ros2 run turtlesim turtlesim_node
+ros2 run turtlesim turtle_teleop_key
+```
+
+Danach können Sie für unseren Turtlesim Umgebung sämtliche Kommunikationsinterfaces auf einen Blick erfassen:
+
+```
+> ros2 node info /turtlesim
+/turtlesim
+  Subscribers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /turtle1/cmd_vel: geometry_msgs/msg/Twist
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+    /turtle1/color_sensor: turtlesim/msg/Color
+    /turtle1/pose: turtlesim/msg/Pose
+  Service Servers:
+    /clear: std_srvs/srv/Empty
+    /kill: turtlesim/srv/Kill
+    /reset: std_srvs/srv/Empty
+    /spawn: turtlesim/srv/Spawn
+    /turtle1/set_pen: turtlesim/srv/SetPen
+    /turtle1/teleport_absolute: turtlesim/srv/TeleportAbsolute
+    /turtle1/teleport_relative: turtlesim/srv/TeleportRelative
+    /turtlesim/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /turtlesim/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /turtlesim/get_parameters: rcl_interfaces/srv/GetParameters
+    /turtlesim/list_parameters: rcl_interfaces/srv/ListParameters
+    /turtlesim/set_parameters: rcl_interfaces/srv/SetParameters
+    /turtlesim/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+  Service Clients:
+
+  Action Servers:
+    /turtle1/rotate_absolute: turtlesim/action/RotateAbsolute
+  Action Clients:
+> ros2 action list -t
+  /turtle1/rotate_absolute [turtlesim/action/RotateAbsolute]
+> ros2 action info /turtle1/rotate_absolute
+  Action: /turtle1/rotate_absolute
+  Action clients: 1
+      /teleop_turtle
+  Action servers: 1
+      /turtlesim
+```
+
+Welche Elemente des Turtlesim-Interfaces können Sie erklären? Wie gehen Sie vor, um sich bestimmter Schnittstellen zu vergewissern?
+
+Welche Struktur hat das Action-Interface?
+
+```
+> ros2 interface show turtlesim/action/RotateAbsolute
+
+  # The desired heading in radians
+  float32 theta
+  ---
+  # The angular displacement in radians to the starting position
+  float32 delta
+  ---
+  # The remaining rotation in radians
+  float32 remaining
+```
+
+Die Definition des Ziels erfolgt mittels
+
+```
+ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute {'theta: -1.57'} --feedback
+```
+
+
+## Erweiterung des Knotenkonzepts
+
+Ein verwalteter Lebenszyklus für Knoten (*managed nodes*) ermöglicht eine bessere Kontrolle über den Zustand des ROS-Systems. Es ermöglicht dem ros2 launch, sicherzustellen, dass alle Komponenten korrekt instantiiert wurden, bevor es einer Komponente erlaubt, mit der Ausführung ihres Verhaltens zu beginnen. Es ermöglicht auch, dass Knoten online neu gestartet oder ersetzt werden können.
+
+Das wichtigste Konzept dieses Dokuments ist, dass ein verwalteter Knoten eine bekannte Schnittstelle darstellt, nach einem bekannten Lebenszyklus-Zustandsautomaten ausgeführt wird und ansonsten als Blackbox betrachtet werden kann.
+
+ROS2 definiert vier Zustände `Unconfigured`, `Inactive`, `Active`, `Finalized` und insgesamt 7 Transitionen.
+
+![STL Container](images/life_cycle_sm.png "Autor: Geoffrey Biggs Tully Foote, https://design.ros2.org/articles/node_lifecycle.html")
+
+
+Für die Interaktion mit einem *managed node* stehen Ihnen unterschiedlichen Möglichkeiten offen. Auf der Kommandozeile kann zwischen den States mittels
+
+```
+ros2 lifecycle set /nodename X   #State Id
+```
+
+gewechselt werden. Komfortabler ist die Spezifikation in den launch-Files.
