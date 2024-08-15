@@ -2,7 +2,7 @@
 
 author:   Sebastian Zug & André Dietrich & Gero Licht
 email:    sebastian.zug@informatik.tu-freiberg.de & andre.dietrich@informatik.tu-freiberg.de & gero.licht@informatik.tu-freiberg.de
-version:  1.0.1
+version:  1.0.2
 language: de
 narrator: Deutsch Female
 
@@ -45,10 +45,7 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 ---------------------------------------------------------------------
 
 
-## ROS2 Kommunikationskonzepte 
-
-                         {{0-1}}
-********************************************************************************
+## ROS2 Kommunikation
 
 **Wiederholung:**
 
@@ -91,18 +88,16 @@ Welche Aufgaben bildet DDS für ROS2 über entsprechende Schnittstellen ab?
 
 > __Discovery, Publish/Subscribe, Services and Actions__ 
 
-Das "turtlebot" Beispiel soll die verschiedenen Mechanismen der Kommunikation unter ROS verdeutlichen. Dabei wird unter anderem eine Publish-Subscribe Kommunikation zwischen einem Node für die Nutzereingaben und einer grafischen Ausgabe realisiert.
+### Turtlebot Beispiel
+
+Das "turtlebot" Beispiel soll die verschiedenen Mechanismen der Kommunikation unter ROS verdeutlichen. Dabei werden alle nachfolgend beschriebenen Mechanismen integriert.
 
 ```
 ros2 run turtlesim turtle_teleop_key
 ros2 run turtlesim turtlesim_node
 ```
 
-********************************************************************************
-
-                         {{1-2}}
-********************************************************************************
-
+### QoS
 
 __Welche Rolle spielen die QoS Eigenschaften des Kommunkations-Layers?__
 
@@ -154,8 +149,6 @@ ros2 topic info /turtle1/cmd_vel --verbose
 ```
 
 möglich.
-
-********************************************************************************
 
 ## ROS Publish-Subscribe
 
