@@ -2,7 +2,7 @@
 
 author:   Sebastian Zug & André Dietrich & Gero Licht
 email:    sebastian.zug@informatik.tu-freiberg.de & andre.dietrich@informatik.tu-freiberg.de & gero.licht@informatik.tu-freiberg.de
-version:  1.0.1
+version:  1.0.2
 language: de
 narrator: Deutsch Female
 
@@ -24,7 +24,7 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 | **Semester**              | @config.semester                                                                                                                                                               |
 | **Hochschule:**           | `Nordakademie - Hochschule der Wirtschaft`                                                                                                                                     |
 | **Inhalte:**              | `Herausforderungen bei der Umsetzung von autonomen Robotern, Abgrenzung, Einordnung von ROS, Basiskonzepte`                                                         |
-| **Link auf Repository: ** | [https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/00_Termin/00_Vorlesung.md](https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/00_Termin/00_Vorlesung.md) |
+| **Link auf Repository:**  | [https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/00_Termin/00_Vorlesung.md](https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/00_Termin/00_Vorlesung.md) |
 | **Autoren**               | @author                                                                                                                                                                        |
 
 ![](https://media.giphy.com/media/26tn33aiTi1jkl6H6/source.gif)
