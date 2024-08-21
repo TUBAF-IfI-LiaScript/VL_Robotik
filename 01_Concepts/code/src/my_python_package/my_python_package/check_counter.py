@@ -15,6 +15,6 @@ def callback(msg):
 def main(args=None):
     rclpy.init(args=args)
     node = rclpy.create_node('check_counter')
-    node.create_subscription(String, 'annotated_int', callback, 10)
+    node.create_subscription(String, 'saldkfjsal', callback, 10)
     rclpy.spin(node)
     rclpy.shutdown()
