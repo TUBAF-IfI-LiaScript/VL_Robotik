@@ -1,0 +1,4 @@
+Link Rosbag:
+https://cloud.tu-freiberg.de/s/tQMpFsfTt5egt2W
+
+pw: tu-freiberg
