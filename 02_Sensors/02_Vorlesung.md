@@ -2,7 +2,7 @@
 
 author:   Sebastian Zug & André Dietrich & Gero Licht
 email:    sebastian.zug@informatik.tu-freiberg.de & andre.dietrich@informatik.tu-freiberg.de & gero.licht@informatik.tu-freiberg.de
-version:  1.0.2
+version:  1.0.3
 language: de
 narrator: Deutsch Female
 
@@ -33,7 +33,13 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 
 **Fragen an die heutige Veranstaltung ...**
 
-* 
+* Nach welchen Schema lassen sich Sensoren klassifizieren?
+* Welche Parameter bestimmten die Qualität eines Sensors?
+* Wie funktionieren Beschleunigungssensoren?
+* Welche Messgröße gibt ein Gyroskop aus?
+* Welche Störungen können bei Kompasssensoren auftreten?
+* Wie kann die Position eines Roboters bestimmt werden?
+* Welche Probleme treten bei der Verwendung von Laserscannern auf?
 
 ---------------------------------------------------------------------
 
