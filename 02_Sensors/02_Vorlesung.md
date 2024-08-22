@@ -2,7 +2,7 @@
 
 author:   Sebastian Zug & André Dietrich & Gero Licht
 email:    sebastian.zug@informatik.tu-freiberg.de & andre.dietrich@informatik.tu-freiberg.de & gero.licht@informatik.tu-freiberg.de
-version:  1.0.1
+version:  1.0.2
 language: de
 narrator: Deutsch Female
 
@@ -12,7 +12,7 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 
 -->
 
-[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/02_Sensors/00_Vorlesung.md)
+[![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/02_Sensors/02_Vorlesung.md)
 
 
 # Einführung
@@ -24,7 +24,7 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 | **Semester**             | @config.semester                                                                        |
 | **Hochschule:**          | `Nordakademie - Hochschule der Wirtschaft`                                              |
 | **Inhalte:**             | `Sensoren und Sensordatenverarbeitung im Kontext mobiler Roboter`                       |
-| **Link auf Repository:** | [https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/02_Sensors/00_Vorlesung.md |
+| **Link auf Repository:** | [https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/02_Sensors/02_Vorlesung.md |
 | **Autoren**              | @author                                                                                 |
 
 ![](https://media.giphy.com/media/26tn33aiTi1jkl6H6/source.gif)
@@ -43,38 +43,39 @@ Wie weit sind wir bisher gekommen? Dank ROSn können wir beliebige Knoten in unt
 Funktionen entwerfen und miteinander verknüpfen. Welche Elemente brauchen wir aber und wie verknüpfen wir diese?
 
 
-<!--
-style="width: 70%; max-width: 720px; display: block; margin-left: auto; margin-right: auto;"
--->
 ```ascii
-                       +----------------------+
-                       | Handlungsplanung     |   Strategie
-                       +----------------------+
-                                ^ ^ ^
-                                | | |                  
-                                v v v
-                       +----------------------+
-                       | Ausführung           |   Taktik
-                       +----------------------+
-                                ^ ^ ^
-                                | | |
-                                v v v
-                       +----------------------+
-                       | Reaktive Überwachung |   Ausführung
-                       +----------------------+
- Sensordatenerfassung    ^ ^ ^          | | |    
- Aktuatoroperationen     | | |          v v v     
-                       .-----------------------.
-                       | Umgebung              |
-                       .-----------------------.                               .
+                    Statusmeldungen 
+     Nutzereingaben  ^                                       
+                 |   |
+Befehle          v   |
+            +-----------------------+
+            | Handlungsplanung      |  "$Strategie   $"
+            +-----------------------+
+                 |   ^     | | |        Folge von Aktionen     
+                 v   |     v v v
+            +-----------------------+
+            | Ausführung            |  "$Taktik$    "           
+            +-----------------------+
+                     ^      | | |       Geplante Trajektorie,
+Status               |      v v v       Verhalten
+            +-----------------------+
+            | Reaktive Überwachung  |  "$Ausführung$        "
+            +-----------------------+
+Sensordaten-    ^ ^ ^        | | |      Steuerbefehle an den 
+erfassung       | | |        v v v      Aktuator 
+            +----------+ +----------+
+            | Sensoren | | Aktoren  |                               
+            +----------+ +----------+
+                  ^           |
+                  |           v      
+            .-----------------------.
+            | Umgebung              |
+            .-----------------------.                                                                                .
 ```
 
 Im weiteren Verlauf der Veranstaltung werden wir uns auf den letzte Ebene fokussieren
 und die elementare Verarbeitungskette verschiedener Sensorsysteme analysieren.
 
-<!--
-style="width: 70%; max-width: 7200px; display: block; margin-left: auto; margin-right: auto;"
--->
 ```ascii
 
        +----------+        +----------+                                
@@ -84,16 +85,18 @@ style="width: 70%; max-width: 7200px; display: block; margin-left: auto; margin-
 |                                                                            |
 |                              .---------------------.                       |
 +----------------------------- | Umgebung            | <---------------------+
-                               .---------------------.
+                               .---------------------.                                                               .
 ```
 Beginnen wir also mit der Sensorik ...
 
 ### Sensorik des Menschen
 
-__Aufgabe:__ 	Gewinnung von Information über internen („Propriozeption“) 	bzw. externen Zustand  („Exterozeption“)  = „Wahrnehmung“ von 	Eigenzustand und Umwelt;
+> __Aufgabe:__ 	Gewinnung von Information über internen („Propriozeption“) 	bzw. externen Zustand  („Exterozeption“)  = „Wahrnehmung“ von 	Eigenzustand und Umwelt;
 
-__Zielstellung:__ Möglichkeit zur Reaktion auf innere und äußere Einflüsse
+> __Zielstellung:__ Möglichkeit zur Reaktion auf innere und äußere Einflüsse
 
+    {{0-1}}
+*******************************************************************************
 
 | Klassifikation | Umsetzung                                  |
 | -------------- | ------------------------------------------ |
@@ -105,7 +108,12 @@ __Zielstellung:__ Möglichkeit zur Reaktion auf innere und äußere Einflüsse
 |                | + ungefähr 7 Grundgerüche                  |
 | Intensität     | Amplitude                                  |
 
-Und wie funktioniert das? Sogenannten Rezeptoren ...
+*******************************************************************************
+
+    {{1-2}}
+*******************************************************************************
+
+Und wie funktioniert das? Sogenannte Rezeptoren ...
 
 ... sind spezialisierte Zellen, die von bestimmten inneren oder äußeren Reizen angeregt werden und sie dann in Form von elektrischen Impulsen oder chemischen Reaktionen weiterleiten.
 
@@ -119,6 +127,8 @@ Und wie funktioniert das? Sogenannten Rezeptoren ...
 | Thermorezeptoren  | Temperaturänderung      |
 | Photorezeptoren   | Licht                   |
 | Chemorezeptoren   | Geschmäcker und Gerüche |
+
+*******************************************************************************
 
 ### Technische Sensoren
 
@@ -136,7 +146,7 @@ Achtung, die einschlägige deutsche Norm DIN 1319 1-4 vermeidet den Begriff und 
     {{1-2}}
 *******************************************************************************
 
-![RoboterSystem](./image/09_Sensoren/SensorIntegrationsLevel.png "Integrationsebenen von Sensoren (eigene Darstellung)")
+![RoboterSystem](images/SensorIntegrationsLevel.png "Integrationsebenen von Sensoren (eigene Darstellung)")
 
 *******************************************************************************
 
@@ -224,7 +234,7 @@ Konzentrieren wir uns auf das letztgenannte Konzept.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eqZgxR6eRjo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-![Sensorsystem](./image/09_Sensoren/MPU-9255.png "Handbuch MPU 9255 [^InvenSense]")
+![Sensorsystem](images/MPU-9255.png "Handbuch MPU 9255 [^InvenSense]")
 
 [^InvenSense]: *Handbuch MPU 9255* [InvenSense](https://stanford.edu/class/ee267/misc/MPU-9255-Datasheet.pdf)  ]
 
@@ -238,7 +248,7 @@ Aus den Samples des Beschleunigungssensors lässt sich mittels $v=v_0 +\sum a_i\
 
 [^Kling]: *Aufzeichung einer Fahrstuhlfahrt mit der IMU des Mobiltelefones* [Jordi Kling, [Zurückgelegter Weg einer Fahrstuhlfahrt mit Handysensorik](https://blogs.hu-berlin.de/didaktikdigital/2016/11/20/zurckgelegter-weg-einer-fahrstuhlfahrt-mit-handysensorik/)  ]
 
-Aus der "Integration" der Samples über der Zeit folgt eine mangelnde Langzeitstabilität, daher koppelt man ein INS beispielsweise liefert eine Kombination mit einem Global Positioning System (GPS).
+Aus der "Integration" der Samples über der Zeit folgt eine mangelnde Langzeitstabilität, daher koppelt man ein INS beispielsweise liefert eine Kombination mit einem Sattelitennavigationssystem.
 
 ### Gyroskope
 
@@ -252,7 +262,7 @@ Wie kann man das Ganze anwenden?
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/s_V3mGRaxK0?start=10&end=26" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-> Aufgabe 2: Welchen Kanal des Gyroskopes müssen Sie auf Ihrem Roboter auswerten, um die im Video gezeigte Applikation zu realisieren. (10min)
+> Aufgabe 2: Welchen Nachrichtentyp und welchen Kanal des Gyroskopes müssen Sie auf Ihrem Roboter auswerten, um die im Video gezeigte Applikation zu realisieren.
 
 > Aufgabe 3: Mit welcher Funktion können wir den Winkel aus den Samples des Gyroskopes berechnen? (10min)
 
@@ -284,7 +294,7 @@ Der elektrische Widerstand hängt von der Ausrichtung $\alpha$ einer ferromagnet
 **Magnetoresistiver Sensor**
 
 ![RoboterSystem](./image/09_Sensoren/KMZ52.png)<!--style="width: 30%; max-width: 720px;"-->
-*Interne Struktur eines KMZ52 Sensors* [Honeywell Electronics 1996](https://asset.conrad.com/media10/add/160267/c1/-/en/000182826DS02/datenblatt-182826-nxp-semiconductors-magnetfeldsensor-kmz-51-5-vdc-messbereich-02-02-kam-so-8-loeten.pdf)  ]
+*Interne Struktur eines KMZ52 Sensors* [Honeywell Electronics 1996](https://asset.conrad.com/media10/add/160267/c1/-/en/000182826DS02/datenblatt-182826-nxp-semiconductors-magnetfeldsensor-kmz-51-5-vdc-messbereich-02-02-kam-so-8-loeten.pdf)]
 
 **Hall Sensor**
 
@@ -293,7 +303,7 @@ Der elektrische Widerstand hängt von der Ausrichtung $\alpha$ einer ferromagnet
 > Achtung: Insbesondere bei Innenraumanwendungen unterliegen Kompasse starken Störungen.
 
 ![RoboterSystem](images/KompassStoerungen.png)<!-- width="60%" -->
-*Klassen von Störungen für Kompasssensoren* [Philips Electronic Compass Designusing KMZ51 and KMZ52](https://pdfs.semanticscholar.org/ad20/e5c06b4524fdef0f1dee5b83641822abd609.pdf)  
+*Klassen von Störungen für Kompasssensoren* [Philips Electronic Compass Design using KMZ51 and KMZ52](https://pdfs.semanticscholar.org/ad20/e5c06b4524fdef0f1dee5b83641822abd609.pdf)  
 
 ![RoboterSystem](images/MagnetfeldRoboter.png)<!-- width="60%" -->
 *Robotersystem mit einem Array von Magnetfeldsensoren zur Datenerfassung* [Dissertation Filip Filipow]
