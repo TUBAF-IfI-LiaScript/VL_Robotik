@@ -40,9 +40,37 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 
 ## Einordnung
 
+```ascii
+                    Statusmeldungen 
+     Nutzereingaben  ^                                       
+                 |   |
+Befehle          v   |
+            +-----------------------+
+            | Handlungsplanung      |  "$Strategie   $"
+            +-----------------------+
+                 |   ^     | | |        Folge von Aktionen     
+                 v   |     v v v
+            +-----------------------+
+            | Ausführung            |  "$Taktik$    "           
+            +-----------------------+
+                     ^      | | |       Geplante Trajektorie,
+Status               |      v v v       Verhalten
+            +-----------------------+
+            | Reaktive Überwachung  |  "$Ausführung$        "
+            +-----------------------+
+Sensordaten-    ^ ^ ^        | | |      Steuerbefehle an den 
+erfassung       | | |        v v v      Aktuator 
+            +----------+ +----------+
+            | Sensoren | | Aktoren  |                               
+            +----------+ +----------+
+                  ^           |
+                  |           v      
+            .-----------------------.
+            | Umgebung              |
+            .-----------------------.                                                                                .
+```
 
-Im weiteren Verlauf der Veranstaltung werden wir uns auf den letzte Ebene fokussieren
-und die elementare Verarbeitungskette verschiedener Sensorsysteme analysieren.
+Die reaktiven Ebene kann wiederum als Regelkreis aufgefasst werden, der Gegenstand der heutigen Diskussion sein soll.
 
 ```ascii
 
