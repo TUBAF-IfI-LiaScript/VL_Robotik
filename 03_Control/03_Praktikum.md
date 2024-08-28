@@ -207,6 +207,66 @@ ErrorState --> Error
 @enduml
 ```
 
-Hilfestellungen:
+*******************************************************************************
+
+## Umsetzung in Python
 
 ...
+
+## Aufgabe
+
+Der Roboter folgt einer Linie (Auswertung der Kamera). Sobald er auf ein Hindernis trifft dreht er sich um 180 Grad und fährt in die entgegengesetzte Richtung. Am Ende wollen wir eine Pendelbewegung zwischen zwei Hindernissen sehen.
+
+1. __Linienverfolgung__: Der Roboter fährt geradeaus. Später wird dies durch unsere Spurverfolgung ersetzt.
+2. __Drehung180__: Der Roboter dreht sich um die eigene Achse, bis er wieder auf die Linie trifft.
+3. __Timeout__: Der Roboter stoppt, wenn er 10 Sekunden lang keine Linie mehr sieht.
+
+![](https://www.plantuml.com/plantuml/png/RP1D2u9048Rl-ok6FKOodWL3eg13nsuH8ZZgeeumxjhVRumEbNlRZ_TvzjqfPb-93-DWheuTyKBIJ4CRk8KCp4ceqwLUzRFk0SnPP98Ch5tA8K_ti9IIfzOQO-wx1oJ90VuzMt4af7B4OzKnD48ECGfzjrdp5ySr2RiPIFgAsIF-Deuyj7BlCtWwKhgb9gY5DwYodxyYtjn8K_3HMl5SGLphK5y0)
+
+**Hinweise**
+
+1. Welche Funktionalität sollte der Knoten aufweisen?
+
++ Linenerkennung auf der Basis der Kameradaten 
++ Hinderniserkennung auf der Basis der Laserscannerdaten
++ Drehung um 180 Grad (Zeitgesteuert oder mit den Odometriedaten, Abbruch, wenn die Linie erreicht wird)
++ Timeout
++ Zustandslogik
+
+
+2. Wie kann ich den Timeout in Python realisieren?
+
+```python Watchdog
+from threading import Timer
+import sys
+import time
+
+class Watchdog(Exception):
+    def __init__(self, timeout, userHandler=None):  # timeout in seconds
+        self.timeout = timeout
+        self.handler = userHandler if userHandler is not None else self.defaultHandler
+        self.timer = Timer(self.timeout, self.handler)
+        self.timer.start()
+
+    def reset(self):
+        self.timer.cancel()
+        self.timer = Timer(self.timeout, self.handler)
+        self.timer.start()
+
+    def stop(self):
+        self.timer.cancel()
+
+    def defaultHandler(self):
+        raise self
+
+def myHandler():
+  print("Timeout reached!")
+  sys.exit()
+
+watchdog = Watchdog(3, myHandler)
+
+time.sleep(2)
+watchdog.reset()
+print("Watchdog was reseted, we have to wait 3 seconds now")
+```
+@LIA.python3
