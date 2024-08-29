@@ -17,7 +17,7 @@ comment:  Implementierung einer Zustandsmaschine für den Roboter
 
 # Verhaltensmuster \
  mit Automaten
-
+ 
                           {{0-1}}
 *******************************************************************************
 
