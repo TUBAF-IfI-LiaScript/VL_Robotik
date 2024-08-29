@@ -86,12 +86,9 @@ Mathematisch kann ein Deterministischer Endlicher Automat als Tupel $A = (Q, \Si
 + $F\subseteq Q$ ist die Menge der akzeptierenden Zustände, die sogenannten Finalzustände (oder Endzustände).
 
 
-*******************************************************************************
+### Beispiel I
 
-                          {{1-2}}
-*******************************************************************************
-
->Beispiel I:  __Interaktion eines Roboters mit einer Tür__
+__Interaktion eines Roboters mit einer Tür__
 
 Darstellung als Graph
 
@@ -106,12 +103,9 @@ Darstellung in einer Übergangstabelle
 
 > Bei einem stochastischen Automaten wäre der Erfolg einer Aktion nicht deterministisch, sondern würde von einer Wahrscheinlichkeit abhängen. _Wenn "öffnen" ausgeführt wird, ist dies zu 95 Prozent erfolgreich und führt zu einem offenen Zustand._
 
-*******************************************************************************
+### Beispiel II
 
-                          {{2-3}}
-*******************************************************************************
-
->Beispiel II:  __Statisches Umfahrung eines Hindernisses__
+__Statisches Umfahrung eines Hindernisses__
 
 Der Roboter soll in der Lage sein, auf ein Hindernis mit einem vorprogrammierten Bewegungsmuster auszuweichen. Dazu soll eine Zustandsmaschine implementiert werden, die folgende Zustände kennt:
 
@@ -119,6 +113,11 @@ Der Roboter soll in der Lage sein, auf ein Hindernis mit einem vorprogrammierten
 2. __DrehungRechts__: Der Roboter dreht sich um 90 Grad nach rechts.
 2. __DrehungLinks__: Der Roboter dreht sich um 90 Grad nach links.
 3. __Streckenfahrt__: Der Roboter fährt eine Strecke (z.B. 30cm) nach vorne.
+
+  
+                              {{0-1}}
+*******************************************************************************
+
 
 ```ascii
                                 ^
@@ -137,10 +136,10 @@ Der Roboter soll in der Lage sein, auf ein Hindernis mit einem vorprogrammierten
              Rechts-            |                                       
              drehung            |                                       
                               Robot                                         
-                                                                    
+                                                                                               .
 ```
 
-Die Zustandsmaschine soll folgende Übergänge kennen:
+Die Zustandsmaschine könnte dann wie folgt aussehen:
 
 ![](https://www.plantuml.com/plantuml/png/ZP3FIiD04CRlynJ37grXewK7XKeFGZruqgELiascoP9q0fDDB-Ap-1Q-G5_CtRg5PeNYRGxVx_ipYzuPSSEkXIM9ASaC_TRKul0UbTgls_bDdb_ZVYtXK0eUXUg1gsVBJUyr65NPBAfcGUGz7U4B5RNhpMPZgIB63q1yTK95GnmZJlGvl6AbYcvWDvaevP4O-6ls5ycEWPy0t3b2iLNjiDicsH0jvq5BN68G0y3RrJjcsGEEfwUVy89ajTPFbaiIjZsID8RPQGsdSGaLgmTgcXSx916oHUs95Mjzx8LDIvP9SAhrwCF1PMGRNEvoNFg2PqO0ewZ_KadXPEV5mfKSlWzV97YRD4x-UI5zGLmEk_O7)
 
@@ -172,6 +171,11 @@ DrehungLinks --> Geradeausfahrt: //90 Grad erreicht//
 ```
 
 > Welche Erweiterungen sehen Sie?
+
+*******************************************************************************
+
+                              {{1-2}}
+*******************************************************************************
 
 ![](https://www.plantuml.com/plantuml/png/ZPF1Ji9048Rl-nIJ7iLcAuI391WE6Znu4czYoD8ExQOmJQPRBiPdyIry0LxCQLs2Mmpnncx-_vj_VhQpsXbspMwhviWcGzFK6rEmWmb4qNwrdTuaoJNiLzp-YA8bHP6pEwmQDoKZ1tNFM3IKFragQp61jyLZRnk7Bi7KufAf3k4PqyBLPhssc2F1km9OECQqH3g6yBW-BQqQSeD1Y1vsQ00VwOT-peZ_ZWJmm5pneaqs0VMXkkEn1kyLfr9KEGIsUU6WslIMK3vRfqJAe1KhfLwltY2Exo1ikL-w27fzQlreAKCcMmDoQOYSrYfiILp1ogrhbAGxCJ1QkT5wILftkQ3SeYLa60acc2MK0DjIRXEOIy1V81LC-gUfdpTSytBUd0zVXqza6FO31tLUcdvkyt-jrY_T4pZVoulySmYLuJANbAVxaqpDa3Bvthu1)
 
@@ -211,7 +215,71 @@ ErrorState --> Error
 
 ## Umsetzung in Python
 
-...
++ intuitive Implemententierung 
+
+  ```python IntuitivSM.py
+  # Beispiel einer Zustandsmaschine mit if else Anweisungen
+  state = "Geradeausfahrt"
+  count = 0
+  timeout = 0
+
+  while True:
+      if state == "Geradeausfahrt":
+          print("Geradeausfahrt")
+          if Hindernis_erkannt:
+              state = "DrehungLinks"
+      elif state == "DrehungLinks":
+          print("DrehungLinks")
+          if 90 Grad erreicht:
+              state = "Streckenfahrt"
+      elif state == "Streckenfahrt":
+          print("Streckenfahrt")
+          count += 1
+          if count > 2:
+              state = "Geradeausfahrt"
+          elif 30cm erreicht:
+              state = "DrehungRechts"
+      elif state == "DrehungRechts":
+          print("DrehungRechts")
+          if 90 Grad erreicht:
+              state = "Streckenfahrt"
+  ```
+
++ objektorientierte Umsetzung (Entwurfsmuster State Machine) vgl. zum Beispiel https://medium.com/@amirm.lavasani/design-patterns-in-python-state-8916b2f65f69
+
++ Implementierung mit einer Bibliothek (z.B. transitions) vgl. https://github.com/pytransitions/transitions 
+
+##  Probleme bei der Verwendung von Zustandsmaschinen
+
+1. Komplexität bei großen Systemen:
+
+    Zustandsexplosion: Wenn das System viele Zustände und Übergänge hat, kann die Zustandsmaschine schnell sehr komplex und schwer zu verwalten werden. Dies führt zu einer sogenannten „Zustandsexplosion“, bei der die Anzahl der Zustände exponentiell mit der Anzahl der Variablen und möglichen Werte wächst.
+    
+    Schwierige Wartung: Große und komplexe Zustandsmaschinen sind schwer zu verstehen, zu dokumentieren und zu warten. Kleine Änderungen im System können dazu führen, dass viele Zustände und Übergänge angepasst werden müssen.
+
+2. Schwierigkeiten bei nicht-diskreten Zuständen:
+
+    Kontinuierliche Systeme: Zustandsmaschinen sind in erster Linie für diskrete Zustände geeignet. Systeme, die kontinuierliche Zustandsübergänge oder viele Zwischenschritte aufweisen, sind schwieriger zu modellieren und könnten einen übermäßigen Einsatz von Zuständen und Übergängen erfordern.
+
+3. Eingeschränkte Flexibilität:
+
+    Statische Struktur: Zustandsmaschinen sind im Allgemeinen statisch und schwer anzupassen, wenn sich die Systemanforderungen ändern. Jede Änderung erfordert eine explizite Anpassung der Zustands- und Übergangsdefinitionen.
+    Schwierig bei parallelen Prozessen: Die Modellierung paralleler oder konkurrierender Prozesse kann komplex sein, da Zustandsmaschinen in der Regel linear und sequentiell arbeiten. Dies kann die Modellierung solcher Systeme unnötig kompliziert machen.
+
+4. Übermäßige Abstraktion:
+
+    Verlust an Detailtiefe: Zustandsmaschinen abstrahieren die Realität stark. Bei komplexen Systemen kann es schwierig sein, alle relevanten Details in der Zustandsmaschine zu erfassen, was zu einer ungenauen oder fehlerhaften Modellierung führen kann.
+
+5. Leistungsprobleme:
+
+    Laufzeitperformance: In Systemen mit vielen Zuständen und Übergängen kann die Laufzeit der Zustandsmaschine beeinträchtigt werden, insbesondere wenn viele Bedingungen bei jedem Übergang überprüft werden müssen.
+    Speicherverbrauch: Komplexe Zustandsmaschinen können viel Speicher benötigen, was in eingebetteten Systemen oder ressourcenbeschränkten Umgebungen problematisch sein kann.
+
+6. Schwierigkeit beim Testen:
+
+    Komplexe Testfälle: Durch die hohe Anzahl möglicher Zustände und Übergänge kann das Testen eines Systems, das durch eine Zustandsmaschine modelliert wurde, sehr aufwendig sein. Es muss sichergestellt werden, dass alle möglichen Übergänge und Randfälle getestet werden.
+
+> Wir werden in einer kommenden Veranstaltung darüber sprechen, welche Alternativen es gibt, um diese Probleme zu umgehen.
 
 ## Aufgabe
 
@@ -227,7 +295,7 @@ Der Roboter folgt einer Linie (Auswertung der Kamera). Sobald er auf ein Hindern
 
 1. Welche Funktionalität sollte der Knoten aufweisen?
 
-+ Linenerkennung auf der Basis der Kameradaten 
++ Linienerkennung auf der Basis der Kameradaten 
 + Hinderniserkennung auf der Basis der Laserscannerdaten
 + Drehung um 180 Grad (Zeitgesteuert oder mit den Odometriedaten, Abbruch, wenn die Linie erreicht wird)
 + Timeout
@@ -246,6 +314,7 @@ class Watchdog(Exception):
         self.timeout = timeout
         self.handler = userHandler if userHandler is not None else self.defaultHandler
         self.timer = Timer(self.timeout, self.handler)
+        print("Timeout set to", self.timeout, "seconds")
         self.timer.start()
 
     def reset(self):
@@ -267,6 +336,6 @@ watchdog = Watchdog(3, myHandler)
 
 time.sleep(2)
 watchdog.reset()
-print("Watchdog was reseted, we have to wait 3 seconds now")
+print("Watchdog was reseted after 2 seconds, we have to wait 3 seconds now")
 ```
 @LIA.python3

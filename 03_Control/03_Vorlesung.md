@@ -34,7 +34,11 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 
 **Fragen an die heutige Veranstaltung ...**
 
-* 
+* Worin unterscheiden sich Steuerung und Regelung?
+* Was sind Störgrößen?
+* Wofür stehen PID und was sind die Vor- und Nachteile?
+* Welche Strecken lassen sich mit einem PID Regler nur unzureichend abbilden?
+* Was sind die Schritte bei der Umsetzung eines Reglers?
 
 ---------------------------------------------------------------------
 
@@ -127,6 +131,9 @@ style="width: 100%; max-width: 720px;"
 
 ## Regelung
 
+                  {{0-1}}
+*********************************************************
+
 __Definition „Regelung“ nach DIN 19226__ : „Das Regeln, die Regelung, ist ein Vorgang, bei dem eine Größe, die zu regelnde Größe (Regelgröße), fortlaufend erfasst, mit einer anderen Größe, der Führungsgröße, verglichen und abhängig vom Ergebnis dieses Vergleichs im Sinne einer Angleichung an die Führungsgröße beeinflusst wird. Kennzeichen für das Regeln ist der geschlossene Wirkungskreislauf, bei dem die Regelgröße im Wirkungsweg des Regelkreises fortlaufend sich selbst beeinflusst.“
 
 <!--
@@ -153,6 +160,11 @@ style="width: 80%; min-width: 420px; max-width: 720px;"
 | Stellgröße $y$         | Die Stellgröße wird vom Regler bzw. bei Verwendung eines 	Stellers vom Steller generiert.                                                                                             |
 |  Störgröße $z$                      |                                                                                                                                                                                       |
 
+*********************************************************
+
+                  {{1-2}}
+*********************************************************
+
 <!--
 style="width: 100%; max-width: 720px;"
 -->
@@ -177,6 +189,8 @@ Dabei unterscheiden wir zwei grundlegende Regelungskonzepte:
 | Performance    | Eine schnell veränderliche Führungsgröße erfordert einen Regel-kreis mit gutem Führungs-verhalten. | Festwertregler haben die Aufgabe Störungen auszuregeln und sind dementsprechend auf ein gutes Störverhalten auszulegen. |
 | Beispiel    | Abstandsbasierte Geschwindigkeitsregelung eines Fahrzeuges                                          | Inverses Pendel                                                                                                         |
 
+*********************************************************
+
 ## Allgemeines Vorgehen bei der Reglerauslegung
 
 In beiden Fällen muss man sich bewusst sein, dass die Strecke nicht
@@ -185,18 +199,16 @@ der Führungsgröße mit einem eigenen Verzögerungsverhalten regiert.
 Entsprechend der Abbildung der Stellgröße $y$ auf die Regelgröße $x$
 unterscheiden wir dabei folgende Basistypen, wobei jeweils die Sprungantwort gezeigt wird.
 
-Die Diagramme in diesem Bereich gehen auf den Autor "Chris828" zurück und sind unter https://de.wikipedia.org zu finden.
-
 __Proportionale Strecke__
 
-![RoboterSystem](./image/11_Regelungstechnik/Step-p.png)
+![RoboterSystem](./images/Step-p.png)
 $x(t) = K_p \cdot y(t)$ mit $K_p = 2$
 
 Beispiele: Verstärker, Spannungsteiler, Sensoren mit vernachlässigbarem Verzögerungsverhalten
 
 __Integral wirkende Strecke__
 
-![RoboterSystem](./image/11_Regelungstechnik/Step-i.png)
+![RoboterSystem](./images/Step-i.png)
 $\dot y(t) = K_i \cdot u(t)$ mit $K_i = 2$
 
 Beispiele: Wassertank, Kondensator, Geschwindigkeit als Integration
@@ -226,6 +238,8 @@ Wie kann eine Strecke anhand des Modells weiter charakterisiert werden?
 
 ![RoboterSystem](images/Bode_PT1.png)
 _Bode-Diagramm einer PT1 Strecke_
+
+> Die Diagramme in diesem Bereich gehen auf den Autor "Chris828" zurück und sind unter https://de.wikipedia.org zu finden.
 
 ## Regler
 
@@ -383,7 +397,7 @@ plt.savefig('foo.png')
 Kombinieren wir nun das Ganze mit einem Regler, so lässt sich das Verhalten nach unterschiedlichen Parametern optimieren.
 
 ```python control_loop.py
-# https://www.csestack.org/control-systems-simulation-python-example/
+# https://www.csestack.org/control-systems-simulation-python-example/ (5, 0.0143, 356.25)
 import math
 import matplotlib.pyplot as plt
 import numpy as np
@@ -448,19 +462,27 @@ class ClosedLoopSystem:
     self.Ypr = Y
     return Y
 
-Plant = SecondOrderSystem(250, 100)     
-#Pid = PIDControlBlock(5, 0.0143, 356.25)
-Pid = PIDControlBlock(2, 0, 0)
-Ctrl = ClosedLoopSystem(Pid, Plant)
+#                      P  I  D                       
+Pid1 = PIDControlBlock( 2, 0, 0)
+Pid2 = PIDControlBlock( 3, 0, 0)
+
+Ctrl1 = ClosedLoopSystem(Pid1, SecondOrderSystem(250, 100))
+Ctrl2 = ClosedLoopSystem(Pid2, SecondOrderSystem(250, 100))
+
 t = np.arange(0, 1001)
 setpoints = np.zeros(len(t))
 setpoints[np.where(t > 50)]= 100
-y = np.arange(0, 1001, dtype = float)
+
+y1 = np.arange(0, 1001, dtype = float)
+y2 = np.arange(0, 1001, dtype = float)
 for index, value in enumerate(setpoints):
-    y[index]=Ctrl(value)
+    y1[index]=Ctrl1(value)
+    y2[index]=Ctrl2(value)
+    
 fig, ax = plt.subplots()
 ax.plot(t, setpoints, label = "Setpoint")
-ax.plot(t, y, label = "Controled speed level")
+ax.plot(t, y1, label = "PID1")
+ax.plot(t, y2, label = "PID2")
 plt.xlabel("Time")
 plt.ylabel("Speed")
 plt.legend()
