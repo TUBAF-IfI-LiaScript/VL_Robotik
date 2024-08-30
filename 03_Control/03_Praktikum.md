@@ -141,9 +141,6 @@ Der Roboter soll in der Lage sein, auf ein Hindernis mit einem vorprogrammierten
 
 Die Zustandsmaschine könnte dann wie folgt aussehen:
 
-![](https://www.plantuml.com/plantuml/png/ZP3FIiD04CRlynJ37grXewK7XKeFGZruqgELiascoP9q0fDDB-Ap-1Q-G5_CtRg5PeNYRGxVx_ipYzuPSSEkXIM9ASaC_TRKul0UbTgls_bDdb_ZVYtXK0eUXUg1gsVBJUyr65NPBAfcGUGz7U4B5RNhpMPZgIB63q1yTK95GnmZJlGvl6AbYcvWDvaevP4O-6ls5ycEWPy0t3b2iLNjiDicsH0jvq5BN68G0y3RrJjcsGEEfwUVy89ajTPFbaiIjZsID8RPQGsdSGaLgmTgcXSx916oHUs95Mjzx8LDIvP9SAhrwCF1PMGRNEvoNFg2PqO0ewZ_KadXPEV5mfKSlWzV97YRD4x-UI5zGLmEk_O7)
-
-
 ```text @plantUML
 @startuml
 Geradeausfahrt : ""v_l=100, v_r=100""
@@ -158,8 +155,8 @@ note right of Rechtsabbiegen
 ""count=0""
 end note
 
-
 [*] --> Geradeausfahrt
+Geradeausfahrt -> Geradeausfahrt: //Kein Hindernis//
 Geradeausfahrt -> DrehungLinks : //Hindernis erkannt//
 Streckenfahrt -> DrehungRechts: //30cm erreicht//\n//count kleiner 3//
 DrehungLinks -> Streckenfahrt: //90 Grad erreicht//
@@ -170,20 +167,17 @@ DrehungLinks --> Geradeausfahrt: //90 Grad erreicht//
 @enduml
 ```
 
-> Welche Erweiterungen sehen Sie?
+> Welchen Fehler sehen Sie in dem Zustandsgraphen? Welche weiteren Zustände sollten abgedeckt werden?
 
 *******************************************************************************
 
                               {{1-2}}
 *******************************************************************************
 
-![](https://www.plantuml.com/plantuml/png/ZPF1Ji9048Rl-nIJ7iLcAuI391WE6Znu4czYoD8ExQOmJQPRBiPdyIry0LxCQLs2Mmpnncx-_vj_VhQpsXbspMwhviWcGzFK6rEmWmb4qNwrdTuaoJNiLzp-YA8bHP6pEwmQDoKZ1tNFM3IKFragQp61jyLZRnk7Bi7KufAf3k4PqyBLPhssc2F1km9OECQqH3g6yBW-BQqQSeD1Y1vsQ00VwOT-peZ_ZWJmm5pneaqs0VMXkkEn1kyLfr9KEGIsUU6WslIMK3vRfqJAe1KhfLwltY2Exo1ikL-w27fzQlreAKCcMmDoQOYSrYfiILp1ogrhbAGxCJ1QkT5wILftkQ3SeYLa60acc2MK0DjIRXEOIy1V81LC-gUfdpTSytBUd0zVXqza6FO31tLUcdvkyt-jrY_T4pZVoulySmYLuJANbAVxaqpDa3Bvthu1)
-
-
 ```text @plantUML
 @startuml
 Geradeausfahrt : ""v_l=100, v_r=100""\n""timeout=nan""
-DrehungLinks :   ""v_l=-50, v_r=50""\n""timeout=10s""
+DrehungLinks :   ""v_l=-50, v_r=50""\n""loop++""\n""timeout=10s""
 state Rechtsabbiegen {
   Streckenfahrt :  ""v_l=50, v_r=50""\n""count++""\n""timeout=20s""
   DrehungRechts :  ""v_l=50, v_r=-50""\n""timeout=10s""
@@ -195,14 +189,19 @@ note right of Rechtsabbiegen
 ""count=0""
 end note
 
+note right of DrehungLinks
+""loop=0""
+end note
 
 [*] --> Geradeausfahrt
+Geradeausfahrt -> Geradeausfahrt: //Kein Hindernis//
 Geradeausfahrt -> DrehungLinks : //Hindernis erkannt//
 Streckenfahrt -> DrehungRechts: //30cm erreicht//\n//count kleiner 3//
-DrehungLinks -> Streckenfahrt: //90 Grad erreicht//
+DrehungLinks -> Streckenfahrt: //90 Grad erreicht//\n//loop == 0//
+
 DrehungRechts -> Streckenfahrt: //90 Grad erreicht//
 Streckenfahrt --> DrehungLinks: //30cm erreicht//\n//count größer 2//
-DrehungLinks --> Geradeausfahrt: //90 Grad erreicht//
+DrehungLinks --> Geradeausfahrt: //90 Grad erreicht//\n//loop > 0//
 
 DrehungLinks --> Error: //Timeout//
 DrehungRechts --> ErrorState: //Timeout//

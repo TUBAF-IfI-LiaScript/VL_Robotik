@@ -2,11 +2,11 @@
 
 author:   Sebastian Zug & André Dietrich & Gero Licht
 email:    sebastian.zug@informatik.tu-freiberg.de & andre.dietrich@informatik.tu-freiberg.de & gero.licht@informatik.tu-freiberg.de
-version:  1.0.3
+version:  1.0.4
 language: de
 narrator: Deutsch Female
 
-comment:  Sensoren im Kontext mobiler Roboter
+comment:  PID Controller in mobilen Robotern
 
 import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/config.md
           https://github.com/liascript/CodeRunner
@@ -16,7 +16,7 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 [![LiaScript](https://raw.githubusercontent.com/LiaScript/LiaScript/master/badges/course.svg)](https://liascript.github.io/course/?https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/03_Control/03_Vorlesung.md)
 
 
-# Einführung
+# Grundzüge Regelungstechnik
 
 <!-- data-type="none" -->
 | Parameter                | Kursinformationen                                                                       |
@@ -24,7 +24,7 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 | **Veranstaltung:**       | @config.lecture                                                                         |
 | **Semester**             | @config.semester                                                                        |
 | **Hochschule:**          | `Nordakademie - Hochschule der Wirtschaft`                                              |
-| **Inhalte:**             | `Sensoren und Sensordatenverarbeitung im Kontext mobiler Roboter`                       |
+| **Inhalte:**             | `Grundzüge der Regelungstechnik`                                                        |
 | **Link auf Repository:** | [https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/03_Control/03_Vorlesung.md |
 | **Autoren**              | @author                                                                                 |
 
