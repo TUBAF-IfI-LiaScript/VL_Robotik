@@ -86,6 +86,8 @@ Bringen Sie ein Objekt in den Messbereich des Laserscanners und beobachten Sie
 
 ### Lösungsansatz Filter
 
+> Eine gute Übersicht zu Filtermethoden für Laserscanner finden Sie in der [Dissertation von Gutmann](https://www.researchgate.net/publication/220695395_Robuste_Navigation_autonomer_mobiler_Systeme) (2000).
+
 ```python medfilt.py
 # Generate a signal with some noise
 import numpy as np

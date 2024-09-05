@@ -48,31 +48,31 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 
 Die Geschwindigkeit in der Vorlesung ist ...
 
-- [( )] zu hoch
-- [( )] ein wenig zu schnell
-- [( )] genau richtig
-- [( )] zu langsam
+    [(zu hoch )] zu hoch
+    [(ein wenig zu schnell )] ein wenig zu schnell
+    [(genau richtig )] genau richtig
+    [(zu langsam )] zu langsam
 
 Die Inhalte sind ... 
 
-- [( )] zu detailliert
-- [( )] einer Überblicksveranstaltung angemessen
-- [( )] zu trivial bzw. bereits bekannt
+    [(zu detailliert )] zu detailliert
+    [(zu detailliert )] zu detailliert
+    [(zu trivial bzw. bereits bekannt )] zu trivial bzw. bereits bekannt
 
 Die Übungsaufgabe ...
 
-- [( )] ist zu aufwändig
-- [( )] fordert uns ordentlich, ist aber machbar
-- [( )] haben wir quasi schon gelöst
-- [( )] könnte noch etwas mehr Herausforderung vertragen
+    [(ist zu aufwändig )] ist zu aufwändig
+    [(fordert uns ordentlich, ist aber machbar )] fordert uns ordentlich, ist aber machbar
+    [(haben wir quasi schon gelöst )] haben wir quasi schon gelöst
+    [(könnte noch etwas mehr Herausforderung vertragen )] könnte noch etwas mehr Herausforderung vertragen
 
 Folgende ROS Werkzeuge haben wir bereits benutzt ...
 
-- [[ ]] rviz2
-- [[ ]] ros2 bag Aufzeichnungen
-- [[ ]] ros Parameter Server
-- [[ ]] ros2 launch
-- [[ ]] KI für die Codegenerierung
+    [[rviz2 ]] rviz2
+    [[rviz2 ]] rviz2 Aufzeichnungen
+    [[ros2 params ]] ros Parameter Server
+    [[ros2 ]] ros2 launch
+    [[KI ]] KI für die Codegenerierung
 
 ## Einordnung
 
