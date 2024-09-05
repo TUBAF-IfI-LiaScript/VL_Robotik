@@ -2,7 +2,7 @@
 
 author:   Sebastian Zug & André Dietrich & Gero Licht
 email:    sebastian.zug@informatik.tu-freiberg.de & andre.dietrich@informatik.tu-freiberg.de & gero.licht@informatik.tu-freiberg.de
-version:  1.0.4
+version:  1.0.5
 language: de
 narrator: Deutsch Female
 
@@ -65,6 +65,14 @@ Die Übungsaufgabe ...
 - [( )] fordert uns ordentlich, ist aber machbar
 - [( )] haben wir quasi schon gelöst
 - [( )] könnte noch etwas mehr Herausforderung vertragen
+
+Folgende ROS Werkzeuge haben wir bereits benutzt ...
+
+- [[ ]] rviz2
+- [[ ]] ros2 bag Aufzeichnungen
+- [[ ]] ros Parameter Server
+- [[ ]] ros2 launch
+- [[ ]] KI für die Codegenerierung
 
 ## Einordnung
 
