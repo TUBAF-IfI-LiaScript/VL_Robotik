@@ -34,7 +34,11 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 
 **Fragen an die heutige Veranstaltung ...**
 
-* 
+* Wie unterschieden sich reaktive und kartenbasierte Navigation?
+* Welche Herausforderungen ergeben sich bei der Umsetzung von Bug-Algorithmen?
+* Wie können Transformationen von Koordinatensystemen realisiert werden?
+* Welche Bedeutung haben homogene Koordinaten?
+* Wie können Transformationen in ROS realisiert werden?
 
 ---------------------------------------------------------------------
 
