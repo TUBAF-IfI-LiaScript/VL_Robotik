@@ -16,6 +16,8 @@
 
 + 17:15 Uhr Start der "Wertungsläufe"
 
+    Es wird eine Startreihenfolge geben. Während des aktuellen Wertungslauf bereitet sich die nächste Gruppe auf den Start vor. Der Roboter muss dann in 60 Sekunden startbereit sein.
+
     + zwei Durchläufe für alle Teams innerhalb derer 
 
          + der Roboter an der Ampel auf ein grünes Signal wartet und dann startet 
@@ -44,5 +46,5 @@ Im Repository sollten die Teams folgende Inhalte vorweisen:
 | Element                   | Bewertungsanteil |
 | ------------------------- | ---------------- |
 | Präsentation              | 50%              |
-| Wertungsläufe             | 30%              |
-| Reporting / Dokumentation | 20%              |
+| Wertungsläufe             | 25%              |
+| Reporting / Dokumentation | 25%              |
