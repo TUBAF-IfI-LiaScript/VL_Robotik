@@ -25,7 +25,7 @@ import:   https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_Robotik/main/
 | **Semester**             | @config.semester                                                                                 |
 | **Hochschule:**          | `Nordakademie - Hochschule der Wirtschaft`                                                       |
 | **Inhalte:**             | `Kartenerzeugung und Pfadplanung`                                                                |
-| **Link auf Repository:** | [https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/04_SensorProcessing/04_Vorlesung.md |
+| **Link auf Repository:** | [https://github.com/TUBAF-IfI-LiaScript/VL_Robotik/blob/main/05_FromScanToPlan/05_Vorlesung.md |
 | **Autoren**              | @author                                                                                          |
 
 ![](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTZ1bGJzenM4bzRoOThleG1zdHNqdTZlc2RpanpuaXE5eTAzZ3ZoOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26DNc9KWmxRd8nkUU/giphy.gif)
