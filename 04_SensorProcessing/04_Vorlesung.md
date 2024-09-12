@@ -2,7 +2,7 @@
 
 author:   Sebastian Zug & André Dietrich & Gero Licht
 email:    sebastian.zug@informatik.tu-freiberg.de & andre.dietrich@informatik.tu-freiberg.de & gero.licht@informatik.tu-freiberg.de
-version:  1.0.5
+version:  1.1.8
 language: de
 narrator: Deutsch Female
 
@@ -56,7 +56,7 @@ Die Geschwindigkeit in der Vorlesung ist ...
 Die Inhalte sind ... 
 
     [(zu detailliert )] zu detailliert
-    [(zu detailliert )] zu detailliert
+    [(passend )] für eine Übersichtsveranstaltung passend
     [(zu trivial bzw. bereits bekannt )] zu trivial bzw. bereits bekannt
 
 Die Übungsaufgabe ...
@@ -69,8 +69,8 @@ Die Übungsaufgabe ...
 Folgende ROS Werkzeuge haben wir bereits benutzt ...
 
     [[rviz2 ]] rviz2
-    [[rviz2 ]] rviz2 Aufzeichnungen
-    [[ros2 params ]] ros Parameter Server
+    [[ros2 bag ]] ros2 bag Aufzeichnungen
+    [[ros2 params ]] ros2 Parameter Server
     [[ros2 ]] ros2 launch
     [[KI ]] KI für die Codegenerierung
 
