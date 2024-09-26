@@ -28,7 +28,7 @@
 
    6 x 2 x 5min = 60 min
 
-+ 17:30 Uhr Summary und Abschlussdiskussion
++ 18:30 Uhr Summary und Abschlussdiskussion
 
 ## Reporting / Dokumentation
 
