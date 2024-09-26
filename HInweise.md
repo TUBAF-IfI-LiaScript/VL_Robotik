@@ -4,24 +4,24 @@
 
 | zu vermeiden                                                                                    | Zielstellung                                                         |
 | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| "Hat mal jemand einen USB Adapter?" technische Probleme, verschiedene Auflösung von Projektoren | Machen Sie sich zuvor mit der Technik vertraut!                      |
+| "Hat mal jemand einen USB Adapter?" technische Probleme, verschiedene Auflösung von Projektoren | Machen Sie sich zuvor mit der Technik vertraut! Gehen Sie mit redundanter Technik in wichtige Präsentationen                      |
 | "Jetzt Du!" unklare Abstimmungen und Übergänge                                                  | gut vorbereitete, die Struktur des Vortrags unterstützende Übergaben |
 | hektische Positionswechsel, ungeschickte "Standorte"                                            | geplante Bewegungen des Teams während der Präsentation               |
 | "Wir beginnen mit der Agenda des Vortrages."                                                    | Motivation der Agenda als Grundlage                                  |
-| "Man versteht ja sein eigenes Wort nicht!"                                                      | Proaktiv für Ruhe sorgen.                                            |
+| "Man versteht ja sein eigenes Wort nicht!"                                                      | Proaktiv für Ruhe sorgen                                             |
 | "ja also" als Einstieg                                                                          | Professioneller Einstieg                                             |
-| umgangssprachliche Formulierungen ("ungefähr", "schauen wir mal")                               | wissenschaftlich und sprachlich präzise Statements                   |
+| "ungefähr", "schauen wir mal" umgangssprachliche Formulierungen                                 | wissenschaftlich und sprachlich präzise Statements                   |
 | "Das war's"                                                                                     | Strukturierte Zusammenfassung und deutlicher Abschluss               |
 | "Fragen?" auf der letzten Folie                                                                 | Zielgerichteter, strategisch platzierter Inhalt                      |
 
 ## Wettbewerb 
 
-Klären Sie JETZT Verantwortlichkeiten für 
+Klären Sie JETZT Verantwortlichkeiten in Ihrem Team für 
 
-+ die Vorbereitung der Technik
++ die Vorbereitung der Technik 
 + mögliche "Rescue"-Einsätze in der Software - Wer repariert was?
 + Support Operationen (Batteriewechsel, Roboter bewachen, ...)
-+ wer finale Entscheidungen trifft 
++ finale Entscheidungen 
 
 Fragen Sie sich als Team JETZT 
 
